@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d19">
+
+<title>Dashboard Admin | PG 620</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #100d19;
+    --maroon: #641d35;
+    --brown: #493126;
+    --gold: #d7b56d;
+    --gold-light: #f3dfad;
+    --white: #f8f5ef;
+    --muted: #aaa3b0;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--white);
+    font-family: "Montserrat", sans-serif;
+    background:
+        radial-gradient(ellipse at 10% 10%, #641d3530, transparent 35%),
+        radial-gradient(ellipse at 90% 80%, #49312640, transparent 35%),
+        var(--navy);
+}
+
+/* HEADER */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 18px 5%;
+    background: #100d19ed;
+    border-bottom: 1px solid #d7b56d30;
+    backdrop-filter: blur(18px);
+}
+
+.header-inner {
+    max-width: 1150px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    color: var(--gold-light);
+    font: 700 23px "Cinzel", serif;
+    letter-spacing: 3px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-btn {
+    padding: 10px 16px;
+    border: 1px solid #d7b56d55;
+    border-radius: 7px;
+    color: var(--gold-light);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.header-btn:hover {
+    background: var(--maroon);
+    border-color: var(--gold);
+}
+
+/* MAIN CONTAINER */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 45px 0 60px;
+}
+
+/* WELCOME */
+
+.welcome {
+    margin-bottom: 35px;
+    padding: 32px;
+    border: 1px solid #d7b56d35;
+    border-radius: 16px;
+    background: linear-gradient(120deg, #641d3540, #49312625, #ffffff08);
+}
+
+.welcome-label {
+    margin-bottom: 12px;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+
+.welcome h1 {
+    color: var(--gold-light);
+    font: 700 clamp(25px, 4vw, 36px) "Cinzel", serif;
+}
+
+.welcome p {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-bottom: 42px;
+}
+
+.stat {
+    position: relative;
+    overflow: hidden;
+    padding: 25px;
+    border: 1px solid #ffffff18;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #ffffff0d, #641d3525);
+    transition: .3s;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+    border-color: #d7b56d80;
+}
+
+.stat span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.stat h2 {
+    margin-top: 12px;
+    color: var(--gold-light);
+    font: 700 30px "Cinzel", serif;
+}
+
+.stat-decoration {
+    position: absolute;
+    right: 18px;
+    bottom: 5px;
+    color: #d7b56d18;
+    font-size: 55px;
+}
+
+/* SECTION TITLE */
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading span {
+    color: var(--gold);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+
+.section-heading h2 {
+    margin-top: 8px;
+    color: var(--gold-light);
+    font: 600 22px "Cinzel", serif;
+}
+
+/* MENU CARDS */
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.menu a {
+    min-height: 180px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid #ffffff18;
+    border-radius: 15px;
+    color: var(--white);
+    text-decoration: none;
+    background: linear-gradient(145deg, #ffffff0e, #641d3525);
+    transition: .3s;
+}
+
+.menu a:hover {
+    transform: translateY(-7px);
+    border-color: var(--gold);
+    background: linear-gradient(145deg, #641d3545, #49312635);
+}
+
+.icon {
+    width: 47px;
+    height: 47px;
+    margin-bottom: 18px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #d7b56d55;
+    border-radius: 12px;
+    color: var(--gold-light);
+    background: #641d3535;
+    font-size: 23px;
+}
+
+.menu h3 {
+    margin-bottom: 9px;
+    color: var(--gold-light);
+    font: 600 15px "Cinzel", serif;
+}
+
+.menu p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* NOTICE */
+
+.notice {
+    margin-top: 30px;
+    padding: 20px 22px;
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    background: #ffffff08;
+}
+
+.notice h3 {
+    margin-bottom: 8px;
+    color: var(--gold-light);
+    font-size: 12px;
+}
+
+.notice p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 30px 15px;
+    border-top: 1px solid #ffffff15;
+    color: #898391;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 2px;
+    line-height: 2.4;
+}
+
+footer span {
+    color: var(--gold);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+    .menu {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    header {
+        padding: 14px 5%;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .header-btn {
+        padding: 9px 11px;
+        font-size: 9px;
+    }
+
+    .container {
+        padding-top: 28px;
+    }
+
+    .welcome {
+        padding: 25px 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat {
+        padding: 20px;
+    }
+
+    .stat h2 {
+        font-size: 25px;
+    }
+
+    .menu {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .menu a {
+        min-height: 155px;
+        padding: 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* ===== MOBILE LIQUID GLASS NAVIGATION ===== */
+
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
+@media (max-width: 720px) {
+
+    body {
+        padding-bottom: 108px !important;
+    }
+
+    header {
+        display: none !important;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        height: 76px;
+        padding: 7px;
+        z-index: 9999;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+        border-radius: 25px;
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+    }
+
+    .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.9),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        height: 62px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0;
+        border-radius: 18px;
+        background: transparent;
+        color: #f8f5ef;
+        text-decoration: none;
+        font: 500 9px 'Montserrat', sans-serif;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+    }
+
+    .bottom-nav a.active::before,
+    .bottom-nav button.active::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: 18px;
+        border: 1px solid #d7b56d88;
+        background: linear-gradient(
+            145deg,
+            #ffffff35,
+            #d7b56d20,
+            #641d3555
+        );
+        box-shadow:
+            inset 0 1px 8px #ffffff25,
+            0 0 15px #d7b56d22;
+    }
+
+    .bottom-nav a.active::after,
+    .bottom-nav button.active::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 9px;
+        width: 11px;
+        height: 14px;
+        border: 1px solid #fff9;
+        border-radius: 60% 60% 60% 10%;
+        transform: rotate(-38deg);
+        background: radial-gradient(
+            ellipse at 30% 22%,
+            #fff 0 12%,
+            #f3dfad 32%,
+            #d7b56d 65%,
+            #641d35 100%
+        );
+        box-shadow: 0 0 8px #fff9, 0 0 13px #d7b56d99;
+        pointer-events: none;
+    }
+
+    .bottom-nav a.active .nav-icon {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 5px #d7b56d);
+    }
+
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 98px;
+        z-index: 10000;
+        min-width: 175px;
+        padding: 9px;
+        border: 1px solid #d7b56d77;
+        border-radius: 17px;
+        background: rgba(55,35,34,.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 12px 30px #0008;
+    }
+
+    .menu-popup.show {
+        display: block;
+    }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .menu-popup a:hover {
+        background: #ffffff18;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+    <div class="header-inner">
+
+        <div class="logo">PG 620</div>
+
+        <div class="header-actions">
+            <a href="home.html" class="header-btn">
+                LIHAT WEBSITE ↗
+            </a>
+
+            <a href="home.html" class="header-btn">
+                KEMBALI
+            </a>
+        </div>
+
+    </div>
+</header>
+
+<!-- DASHBOARD -->
+
+<main class="container">
+
+    <section class="welcome">
+        <div class="welcome-label">ADMIN CONTROL PANEL</div>
+
+        <h1>Admin Dashboard</h1>
+
+        <p>
+            Selamat datang di pusat pengelolaan
+            Panggung Gembira 620.
+            Kelola dan pantau halaman website PG 620 dari sini.
+        </p>
+    </section>
+
+    <!-- STATISTICS -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <span>Total Menu</span>
+            <h2>06</h2>
+            <div class="stat-decoration">▦</div>
+        </div>
+
+        <div class="stat">
+            <span>Status Website</span>
+            <h2>ON</h2>
+            <div class="stat-decoration">◉</div>
+        </div>
+
+        <div class="stat">
+            <span>Admin</span>
+            <h2>01</h2>
+            <div class="stat-decoration">♙</div>
+        </div>
+
+    </section>
+
+    <!-- WEBSITE MANAGEMENT -->
+
+    <section>
+
+        <div class="section-heading">
+            <span>CONTROL CENTER</span>
+            <h2>Website Management</h2>
+        </div>
+
+        <div class="menu">
+
+            <a href="gallery.html">
+                <div class="icon">▧</div>
+                <h3>Kelola Gallery</h3>
+                <p>
+                    Buka halaman dokumentasi foto
+                    kegiatan Panggung Gembira 620.
+                </p>
+            </a>
+
+            <a href="timing.html">
+                <div class="icon">◷</div>
+                <h3>Kelola Schedule</h3>
+                <p>
+                    Lihat dan perbarui susunan
+                    serta jadwal acara.
+                </p>
+            </a>
+
+            <a href="video.html">
+                <div class="icon">▷</div>
+                <h3>Kelola Video</h3>
+                <p>
+                    Buka halaman video dokumentasi
+                    dan live streaming.
+                </p>
+            </a>
+
+            <a href="about.html">
+                <div class="icon">✧</div>
+                <h3>Informasi Acara</h3>
+                <p>
+                    Lihat informasi dan cerita
+                    Panggung Gembira 620.
+                </p>
+            </a>
+
+            <a href="committee.html">
+                <div class="icon">♙</div>
+                <h3>Data Panitia</h3>
+                <p>
+                    Lihat struktur dan informasi
+                    kepanitiaan PG 620.
+                </p>
+            </a>
+
+            <a href="home.html">
+                <div class="icon">⌂</div>
+                <h3>Lihat Website</h3>
+                <p>
+                    Kunjungi halaman utama
+                    Panggung Gembira 620.
+                </p>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- INFORMATION -->
+
+    <section class="notice">
+        <h3>Informasi Admin</h3>
+        <p>
+            Dashboard ini merupakan halaman pintasan menuju
+            halaman website. Untuk mengubah konten, edit file
+            HTML terkait melalui VS Code atau GitHub, kemudian
+            simpan dan commit perubahan agar website diperbarui.
+        </p>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+    <p>© 2026 <span>PANGGUNG GEMBIRA 620</span></p>
+    <p>ADMIN CONTROL PANEL</p>
+</footer>
+
+<!-- MOBILE BOTTOM NAVIGATION -->
+
+<nav class="bottom-nav" aria-label="Navigasi bawah">
+
+    <a href="home.html" data-page="home.html">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="committee.html" data-page="committee.html">
+        <span class="nav-icon">♧</span>
+        <span>Panitia</span>
+    </a>
+
+    <a href="gallery.html" data-page="gallery.html">
+        <span class="nav-icon">▧</span>
+        <span>Galeri</span>
+    </a>
+
+    <a href="video.html" data-page="video.html">
+        <span class="nav-icon">▷</span>
+        <span>Video</span>
+    </a>
+
+    <button type="button" id="bottomMenuToggle"
+        aria-expanded="false" aria-controls="bottomMenu">
+        <span class="nav-icon">☰</span>
+        <span>Menu</span>
+    </button>
+
+</nav>
+
+<div class="menu-popup" id="bottomMenu">
+    <a href="about.html">📖 Tentang</a>
+    <a href="timing.html">📅 Jadwal acara</a>
+    <a href="countdown.html">⏳ Countdown</a>
+    <a href="contact.html">✉ Kontak</a>
+    <a href="dashboard.html">⚙️ Admin</a>
+</div>
+
+<!-- MOBILE NAVIGATION SCRIPT -->
+
+<script>
+(() => {
+    const page = location.pathname.split("/").pop() || "home.html";
+
+    const toggle = document.getElementById("bottomMenuToggle");
+    const popup = document.getElementById("bottomMenu");
+
+    if (!toggle || !popup) return;
+
+    document.querySelectorAll(".bottom-nav a[data-page]").forEach(link => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
+    });
+
+    // Tandai tombol Menu aktif pada halaman dashboard
+    if (page === "dashboard.html") {
+        toggle.classList.add("active");
+    }
+
+    toggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        const opened = popup.classList.toggle("show");
+
+        toggle.classList.toggle("active", opened);
+        toggle.setAttribute("aria-expanded", String(opened));
+    });
+
+    popup.addEventListener("click", (event) => {
+        event.stopPropagation();
+    });
+
+    document.addEventListener("click", () => {
+        popup.classList.remove("show");
+        toggle.classList.remove("active");
+        toggle.setAttribute("aria-expanded", "false");
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -66,8 +66,8 @@ body {
     right: -150px;
 }
 
-/* NAVBAR */
-nav {
+/* NAVBAR DESKTOP */
+.desktop-nav {
     position: fixed;
     top: 15px;
     left: 5%;
@@ -77,6 +77,7 @@ nav {
     border: 1px solid #ffffff20;
     border-radius: 15px;
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,7 +99,7 @@ nav {
     gap: 20px;
 }
 
-.nav-links a {
+.desktop-nav .nav-links a {
     color: #ddd;
     text-decoration: none;
     font-size: 10px;
@@ -106,8 +107,8 @@ nav {
     transition: .3s;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.desktop-nav .nav-links a:hover,
+.desktop-nav .nav-links a.active {
     color: var(--gold);
 }
 
@@ -121,7 +122,7 @@ nav {
 }
 
 /* HEADER */
-header {
+.page-header {
     padding: 160px 20px 65px;
     text-align: center;
 }
@@ -133,14 +134,14 @@ header {
     margin-bottom: 20px;
 }
 
-h1 {
+.page-header h1 {
     font-family: "Cinzel", serif;
     font-size: clamp(40px, 8vw, 75px);
     color: var(--gold-light);
     font-weight: 500;
 }
 
-header p {
+.page-header p {
     color: var(--muted);
     margin-top: 20px;
     font-size: 12px;
@@ -158,6 +159,122 @@ header p {
     );
     margin: 25px auto;
 }
+
+/* NAVIGASI MOBILE - SAMA PERSIS SEPERTI GALLERY */
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    body {
+        padding-bottom: 110px !important;
+    }
+
+    .desktop-nav,
+    .hero {
+        display: none !important;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: calc(100% - 24px);
+        height: 76px;
+        padding: 7px;
+        border-radius: 25px;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+        z-index: 9999;
+
+        background: rgba(75, 25, 43, .72);
+        border: 1px solid rgba(215, 181, 109, .45);
+
+        backdrop-filter: blur(24px) saturate(170%);
+        -webkit-backdrop-filter: blur(24px) saturate(170%);
+
+        box-shadow:
+            0 12px 35px rgba(0,0,0,.35),
+            inset 0 1px 2px rgba(255,255,255,.2);
+
+        overflow: hidden;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        height: 62px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: none;
+        border-radius: 18px;
+        background: transparent;
+        color: #f8f5ef;
+        text-decoration: none;
+        font: 500 9px 'Montserrat', sans-serif;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+        background: rgba(215,181,109,.13);
+        border: 1px solid rgba(215,181,109,.4);
+        box-shadow: inset 0 1px 8px rgba(255,255,255,.12);
+    }
+
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 103px;
+        z-index: 10000;
+        min-width: 175px;
+        padding: 9px;
+        border: 1px solid rgba(215,181,109,.5);
+        border-radius: 18px;
+        background: rgba(73,49,38,.92);
+
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+
+        box-shadow: 0 12px 30px rgba(0,0,0,.4);
+    }
+
+    .menu-popup.show {
+        display: block;
+    }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .menu-popup a:hover {
+        background: rgba(255,255,255,.12);
+    }
+}
+
 
 /* CONTAINER */
 .container {
@@ -190,12 +307,14 @@ header p {
     overflow: hidden;
 }
 
-.video-frame iframe {
+.video-frame iframe,
+.video-frame video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: none;
+    object-fit: contain;
 }
 
 .video-info {
@@ -304,7 +423,7 @@ header p {
 }
 
 .card[hidden] {
-    display: none;
+    display: none !important;
 }
 
 .card .video-frame {
@@ -374,13 +493,16 @@ header p {
     padding: 35px 15px;
     color: var(--muted);
     font-size: 12px;
+    border: 1px dashed #d7b56d55;
+    border-radius: 10px;
+    margin-bottom: 40px;
 }
 
 /* VIDEO MODAL */
 .video-modal {
     position: fixed;
     inset: 0;
-    z-index: 200;
+    z-index: 20000;
     display: none;
     align-items: center;
     justify-content: center;
@@ -431,12 +553,14 @@ header p {
     background: black;
 }
 
-.modal-frame iframe {
+.modal-frame iframe,
+.modal-frame video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: none;
+    object-fit: contain;
 }
 
 /* FOOTER */
@@ -467,12 +591,8 @@ footer span {
     }
 }
 
-/* RESPONSIVE */
-@media(max-width: 700px) {
-    nav {
-        padding: 15px 18px;
-    }
-
+/* TABLET */
+@media(max-width: 1000px) {
     .menu-toggle {
         display: block;
     }
@@ -500,8 +620,11 @@ footer span {
         padding: 14px;
         font-size: 10px;
     }
+}
 
-    header {
+/* MOBILE CONTENT */
+@media(max-width: 700px) {
+    .page-header {
         padding-top: 130px;
     }
 
@@ -535,6 +658,186 @@ footer span {
         width: 100%;
     }
 }
+
+/* MOBILE LIQUID GLASS NAVIGATION */
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
+@media(max-width:720px) {
+    body {
+        padding-bottom: 108px !important;
+    }
+
+    .desktop-nav {
+        display: none !important;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        height: 76px;
+        padding: 7px;
+        z-index: 9999;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+
+        overflow: hidden;
+    }
+
+    .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        height: 62px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0;
+        border-radius: 18px;
+        background: transparent;
+        color: #f8f5ef;
+        text-decoration: none;
+        font: 500 9px 'Montserrat', sans-serif;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+    }
+
+    .bottom-nav a.active::before,
+    .bottom-nav button.active::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: 18px;
+        border: 1px solid #d7b56d88;
+        background: linear-gradient(
+            145deg,
+            #ffffff35,
+            #d7b56d20,
+            #641d3555
+        );
+        box-shadow:
+            inset 0 1px 8px #ffffff25,
+            0 0 15px #d7b56d22;
+    }
+
+    .bottom-nav a.active::after,
+    .bottom-nav button.active::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 9px;
+        width: 11px;
+        height: 14px;
+        border: 1px solid #fff9;
+        border-radius: 60% 60% 60% 10%;
+        transform: rotate(-38deg);
+        background: radial-gradient(
+            ellipse at 30% 22%,
+            #fff 0 12%,
+            #f3dfad 32%,
+            #d7b56d 65%,
+            #641d35 100%
+        );
+        box-shadow: 0 0 8px #fff9, 0 0 13px #d7b56d99;
+        pointer-events: none;
+    }
+
+    .bottom-nav a.active .nav-icon {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 5px #d7b56d);
+    }
+
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 98px;
+        z-index: 10000;
+        min-width: 175px;
+        padding: 9px;
+        border: 1px solid rgba(255,255,255,.55);
+        border-radius: 17px;
+        background: rgba(55,35,34,.92);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        box-shadow: 0 12px 30px #0008;
+    }
+
+    .menu-popup.show {
+        display: block;
+    }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .menu-popup a:hover {
+        background: #ffffff18;
+    }
+}
 </style>
 </head>
 
@@ -543,30 +846,29 @@ footer span {
 <div class="background-glow glow-one"></div>
 <div class="background-glow glow-two"></div>
 
-<!-- NAVBAR -->
-<nav>
-    <a href="index.html" class="logo">PG 620</a>
+<!-- NAVBAR DESKTOP -->
+<nav class="desktop-nav">
+    <a href="home.html" class="logo">PG 620</a>
 
     <button class="menu-toggle" id="menuToggle"
         aria-label="Buka menu" aria-expanded="false">
         ☰
     </button>
 
-       <div class="nav-links" id="navLinks">
+    <div class="nav-links" id="navLinks">
         <a href="home.html">Home</a>
         <a href="about.html">Tentang 620</a>
-        <a href="gallery.html" >Gallery 620</a>
+        <a href="gallery.html">Gallery 620</a>
         <a href="countdown.html">Countdown</a>
         <a href="committee.html">Kepanitiaan</a>
         <a href="video.html" class="active">Live Streaming</a>
         <a href="timing.html">Timing Acara</a>
         <a href="contact.html">Contact</a>
-
     </div>
 </nav>
 
 <!-- HEADER -->
-<header>
+<header class="page-header">
     <div class="label">✦ CINEMATIC DOCUMENTATION ✦</div>
 
     <h1>OUR VIDEOS</h1>
@@ -574,9 +876,9 @@ footer span {
     <div class="line"></div>
 
     <p>
-        kumpulan video kenangan 620 generation.
+        Kumpulan video kenangan 620 Generation.
         <br>
-        setiap perjalanan menyimpan sebuah kenangan.
+        Setiap perjalanan menyimpan sebuah kenangan.
     </p>
 </header>
 
@@ -585,7 +887,6 @@ footer span {
 
     <!-- FEATURED VIDEO -->
     <section class="video-feature">
-
         <div class="video-frame">
             <iframe
                 src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
@@ -603,12 +904,11 @@ footer span {
             <h2>LIVE STREAMING — PG 620</h2>
 
             <p>
-                Sebuah pertunjukan, kreativitas,
-                dari kelas akhir pondok pesantrem modern mafazah.
-                video ini akan di tayangkan disaat acara dimulai.
+                Sebuah pertunjukan kreativitas dari kelas akhir
+                Pondok Pesantren Modern Mafazah.
+                Video ini akan ditayangkan saat acara dimulai.
             </p>
         </div>
-
     </section>
 
     <!-- MORE VIDEOS -->
@@ -616,7 +916,6 @@ footer span {
 
     <!-- SEARCH AND FILTER -->
     <div class="video-tools">
-
         <input
             type="search"
             id="searchInput"
@@ -627,11 +926,10 @@ footer span {
         <select id="categoryFilter" class="category-select"
             aria-label="Filter kategori">
             <option value="all">Semua Kategori</option>
-            <option value="KA">khutbatul arsy</option>
+            <option value="KA">Khutbatul Arsy</option>
             <option value="event">Event Highlights</option>
             <option value="performance">Performance</option>
         </select>
-
     </div>
 
     <!-- VIDEO GRID -->
@@ -640,220 +938,165 @@ footer span {
         <!-- VIDEO 1 -->
         <article class="card"
             data-category="KA"
-            data-title="khutbatul arsy">
+            data-title="khutbatul arsy iklan pekan perkenalan santri baru">
 
             <div class="video-frame">
-                <iframe
-                    src="iklan cewe 5.mp4"
-                    title="iklan KA"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <video controls preload="metadata">
+                    <source src="iklan cewe 5.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
             </div>
 
             <div class="card-info">
-
                 <span class="video-category">KA</span>
-
-                <h3>khutbatul arsy</h3>
-
-                <p>
-                    iklan acara khutbatul arsy (pekan perkenalan santri baru).
-                </p>
-
+                <h3>Khutbatul Arsy</h3>
+                <p>Iklan acara Khutbatul Arsy (pekan perkenalan santri baru).</p>
             </div>
         </article>
 
         <!-- VIDEO 2 -->
         <article class="card"
             data-category="KA"
-            data-title="Event Highlights">
+            data-title="khutbatul arsy iklan pekan perkenalan santri baru">
 
             <div class="video-frame">
-                <iframe
-                    src="iklan cewe 3.mp4"
-                    title="khutbatul arsy"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <video controls preload="metadata">
+                    <source src="iklan cewe 3.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
             </div>
 
             <div class="card-info">
-
                 <span class="video-category">KA</span>
-
-                <h3>khutbatul arsy</h3>
-
-                <p>
-                    iklan acara khutbatul arsy (pekan perkenalan santri baru).
-                </p>
-
+                <h3>Khutbatul Arsy</h3>
+                <p>Iklan acara Khutbatul Arsy (pekan perkenalan santri baru).</p>
             </div>
         </article>
-                <!-- VIDEO 2 -->
+
+        <!-- VIDEO 3 -->
         <article class="card"
             data-category="KA"
-            data-title="Event Highlights">
+            data-title="khutbatul arsy iklan pekan perkenalan santri baru">
 
             <div class="video-frame">
-                <iframe
-                    src="iklan cewe 4.mp4"
-                    title="khutbatul arsy"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <video controls preload="metadata">
+                    <source src="iklan cewe 4.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
             </div>
 
             <div class="card-info">
-
                 <span class="video-category">KA</span>
-
-                <h3>khutbatul arsy</h3>
-
-                <p>
-                    iklan acara khutbatul arsy (pekan perkenalan santri baru).
-                </p>
-
+                <h3>Khutbatul Arsy</h3>
+                <p>Iklan acara Khutbatul Arsy (pekan perkenalan santri baru).</p>
             </div>
-        </article>        <!-- VIDEO 2 -->
+        </article>
+
+        <!-- VIDEO 4 -->
         <article class="card"
             data-category="KA"
-            data-title="Event Highlights">
+            data-title="khutbatul arsy iklan">
 
             <div class="video-frame">
-                <iframe
-                    src="iklan 3.mp4"
-                    title="khutbatul arsy"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <video controls preload="metadata">
+                    <source src="iklan 3.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
             </div>
 
             <div class="card-info">
-
                 <span class="video-category">KA</span>
-
-                <h3>khutbatul arsy</h3>
-
-                <p>
-                    iklan acara khutbatul arsy (pekan perkenalan santri baru).
-                </p>
-
+                <h3>Khutbatul Arsy</h3>
+                <p>Iklan acara Khutbatul Arsy (pekan perkenalan santri baru).</p>
             </div>
-        </article>        <!-- VIDEO 2 -->
+        </article>
+
+        <!-- VIDEO 5 -->
         <article class="card"
             data-category="KA"
-            data-title="Event Highlights">
+            data-title="khutbatul arsy iklan pekan perkenalan santri baru">
 
             <div class="video-frame">
-                <iframe
-                    src="iklan cewe 3.mp4"
-                    title="khutbatul arsy"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <video controls preload="metadata">
+                    <source src="iklan cewe 3.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
             </div>
 
             <div class="card-info">
-
                 <span class="video-category">KA</span>
-
-                <h3>khutbatul arsy</h3>
-
-                <p>
-                    iklan acara khutbatul arsy (pekan perkenalan santri baru).
-                </p>
-
+                <h3>Khutbatul Arsy</h3>
+                <p>Iklan acara Khutbatul Arsy (pekan perkenalan santri baru).</p>
             </div>
-        </article>        <!-- VIDEO 2 -->
+        </article>
+
+        <!-- VIDEO 6 -->
         <article class="card"
             data-category="KA"
-            data-title="Event Highlights">
+            data-title="khutbatul arsy iklan pekan perkenalan santri baru">
 
             <div class="video-frame">
-                <iframe
-                    src="iklan cewe 3.mp4"
-                    title="khutbatul arsy"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <video controls preload="metadata">
+                    <source src="iklan cewe 3.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
             </div>
 
             <div class="card-info">
-
                 <span class="video-category">KA</span>
-
-                <h3>khutbatul arsy</h3>
-
-                <p>
-                    iklan acara khutbatul arsy (pekan perkenalan santri baru).
-                </p>
-
+                <h3>Khutbatul Arsy</h3>
+                <p>Iklan acara Khutbatul Arsy (pekan perkenalan santri baru).</p>
             </div>
-        </article>        <!-- VIDEO 2 -->
+        </article>
+
+        <!-- VIDEO 7 -->
         <article class="card"
             data-category="KA"
-            data-title="Event Highlights">
+            data-title="khutbatul arsy iklan pekan perkenalan santri baru">
 
             <div class="video-frame">
-                <iframe
-                    src="iklan cewe 3.mp4"
-                    title="khutbatul arsy"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <video controls preload="metadata">
+                    <source src="iklan cewe 3.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
             </div>
 
             <div class="card-info">
-
                 <span class="video-category">KA</span>
-
-                <h3>khutbatul arsy</h3>
-
-                <p>
-                    iklan acara khutbatul arsy (pekan perkenalan santri baru).
-                </p>
-
+                <h3>Khutbatul Arsy</h3>
+                <p>Iklan acara Khutbatul Arsy (pekan perkenalan santri baru).</p>
             </div>
-        </article>        <!-- VIDEO 2 -->
+        </article>
+
+        <!-- VIDEO 8 -->
         <article class="card"
             data-category="KA"
-            data-title="Event Highlights">
+            data-title="khutbatul arsy iklan pekan perkenalan santri baru">
 
             <div class="video-frame">
-                <iframe
-                    src="iklan cewe 3.mp4"
-                    title="khutbatul arsy"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
+                <video controls preload="metadata">
+                    <source src="iklan cewe 3.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung video.
+                </video>
             </div>
 
             <div class="card-info">
-
                 <span class="video-category">KA</span>
-
-                <h3>khutbatul arsy</h3>
-
-                <p>
-                    iklan acara khutbatul arsy (pekan perkenalan santri baru).
-                </p>
-
+                <h3>Khutbatul Arsy</h3>
+                <p>Iklan acara Khutbatul Arsy (pekan perkenalan santri baru).</p>
             </div>
-     
+        </article>
+
+    </section>
+
+    <div class="no-result" id="noResult">
+        Video yang kamu cari tidak ditemukan.
+    </div>
+
 </main>
 
 <!-- VIDEO MODAL -->
 <div class="video-modal" id="videoModal">
-
     <div class="modal-content">
 
         <div class="modal-header">
@@ -876,9 +1119,7 @@ footer span {
                 allowfullscreen>
             </iframe>
         </div>
-
     </div>
-
 </div>
 
 <!-- FOOTER -->
@@ -888,61 +1129,86 @@ footer span {
     <p>AL-MUBTARIZ GENERATION</p>
 </footer>
 
+<!-- NAVIGASI BAWAH MOBILE -->
+<nav class="bottom-nav" aria-label="Navigasi bawah">
+    <a href="home.html" data-page="home.html">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="committee.html" data-page="committee.html">
+        <span class="nav-icon">♧</span>
+        <span>Panitia</span>
+    </a>
+
+    <a href="gallery.html" data-page="gallery.html">
+        <span class="nav-icon">▧</span>
+        <span>Galeri</span>
+    </a>
+
+    <a href="video.html" data-page="video.html">
+        <span class="nav-icon">▷</span>
+        <span>Video</span>
+    </a>
+
+    <button type="button" id="bottomMenuToggle"
+        aria-expanded="false" aria-controls="bottomMenu">
+        <span class="nav-icon">☰</span>
+        <span>Menu</span>
+    </button>
+</nav>
+
+<div class="menu-popup" id="bottomMenu">
+    <a href="about.html">📖 Tentang</a>
+    <a href="timing.html">📅 Jadwal acara</a>
+    <a href="countdown.html">⏳ Countdown</a>
+    <a href="contact.html">✉ Kontak</a>
+    <a href="dashboard.html">⚙️ Admin</a>
+</div>
+
 <script>
-/* MOBILE MENU */
+// NAVBAR DESKTOP
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 menuToggle.addEventListener("click", () => {
+    const opened = navLinks.classList.toggle("open");
 
-    const isOpen = navLinks.classList.toggle("open");
-
-    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.setAttribute("aria-expanded", String(opened));
     menuToggle.setAttribute(
         "aria-label",
-        isOpen ? "Tutup menu" : "Buka menu"
+        opened ? "Tutup menu" : "Buka menu"
     );
 
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-
+    menuToggle.textContent = opened ? "✕" : "☰";
 });
 
 navLinks.querySelectorAll("a").forEach(link => {
-
     link.addEventListener("click", () => {
-
         navLinks.classList.remove("open");
-
         menuToggle.setAttribute("aria-expanded", "false");
         menuToggle.setAttribute("aria-label", "Buka menu");
-
         menuToggle.textContent = "☰";
-
     });
-
 });
 
-
-/* SEARCH AND CATEGORY FILTER */
+// SEARCH DAN FILTER VIDEO
 const searchInput = document.getElementById("searchInput");
 const categoryFilter = document.getElementById("categoryFilter");
 const videoCards = document.querySelectorAll(".card");
 const noResult = document.getElementById("noResult");
 
 function filterVideos() {
-
     const keyword = searchInput.value.toLowerCase().trim();
     const category = categoryFilter.value;
 
     let visibleCount = 0;
 
     videoCards.forEach(card => {
-
         const title = card.dataset.title.toLowerCase();
         const selectedCategory = card.dataset.category;
 
         const matchesSearch = title.includes(keyword);
-
         const matchesCategory =
             category === "all" || selectedCategory === category;
 
@@ -951,28 +1217,23 @@ function filterVideos() {
         card.hidden = !visible;
 
         if (visible) visibleCount++;
-
     });
 
     noResult.style.display =
         visibleCount === 0 ? "block" : "none";
-
 }
 
 searchInput.addEventListener("input", filterVideos);
 categoryFilter.addEventListener("change", filterVideos);
 
-
-/* VIDEO MODAL */
+// MODAL VIDEO YOUTUBE
 const videoModal = document.getElementById("videoModal");
 const modalVideo = document.getElementById("modalVideo");
 const modalTitle = document.getElementById("modalTitle");
 const closeModal = document.getElementById("closeModal");
 
 document.querySelectorAll(".play-btn").forEach(button => {
-
     button.addEventListener("click", () => {
-
         const videoID = button.dataset.video;
         const title = button.dataset.title;
 
@@ -985,40 +1246,78 @@ document.querySelectorAll(".play-btn").forEach(button => {
 
         videoModal.classList.add("show");
         document.body.style.overflow = "hidden";
-
     });
-
 });
 
 function closeVideo() {
-
     videoModal.classList.remove("show");
-
-    // Menghentikan video ketika popup ditutup
     modalVideo.src = "";
-
     document.body.style.overflow = "";
-
 }
 
 closeModal.addEventListener("click", closeVideo);
 
 videoModal.addEventListener("click", event => {
-
     if (event.target === videoModal) {
         closeVideo();
     }
-
 });
 
 document.addEventListener("keydown", event => {
-
     if (event.key === "Escape") {
         closeVideo();
     }
-
 });
 
+// LIQUID GLASS MENU MOBILE
+(() => {
+    const page = location.pathname.split("/").pop() || "home.html";
+
+    const toggle = document.getElementById("bottomMenuToggle");
+    const popup = document.getElementById("bottomMenu");
+
+    document.querySelectorAll(".bottom-nav a[data-page]").forEach(link => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
+    });
+
+    const menuPages = [
+        "about.html",
+        "timing.html",
+        "countdown.html",
+        "contact.html",
+        "dashboard.html"
+    ];
+
+    if (menuPages.includes(page)) {
+        toggle.classList.add("active");
+    }
+
+    toggle.addEventListener("click", () => {
+        const opened = popup.classList.toggle("show");
+
+        toggle.classList.toggle(
+            "active",
+            opened || page === "video.html"
+        );
+
+        toggle.setAttribute("aria-expanded", String(opened));
+    });
+
+    document.addEventListener("click", event => {
+        if (!popup.contains(event.target) && !toggle.contains(event.target)) {
+            popup.classList.remove("show");
+
+            toggle.classList.toggle(
+                "active",
+                page === "video.html" || menuPages.includes(page)
+            );
+
+            toggle.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
 </script>
 
 </body>

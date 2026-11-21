@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#100d19">
-
 <title>About | PG 620</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -43,59 +42,59 @@ body {
         var(--navy);
 }
 
-/* NAVBAR */
+/* DESKTOP NAVBAR */
 
-nav {
-  position: fixed;
-  top: 15px;
-  left: 5%;
-  width: 90%;
-  padding: 16px 22px;
-  background: #ffffff0d;
-  border: 1px solid #ffffff20;
-  border-radius: 16px;
-  backdrop-filter: blur(20px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
+.site-header .navbar {
+    position: fixed;
+    top: 15px;
+    left: 5%;
+    width: 90%;
+    padding: 16px 22px;
+    background: #ffffff0d;
+    border: 1px solid #ffffff20;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
 }
 
 .logo {
-  font-family: 'Cinzel', serif;
-  color: var(--gold);
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-decoration: none;
+    font-family: "Cinzel", serif;
+    color: var(--gold);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-decoration: none;
 }
 
 .nav-links {
-  display: flex;
-  align-items: center;
-  gap: 17px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
 }
 
-nav .nav-links a {
-  color: #ddd;
-  text-decoration: none;
-  font-size: 9px;
-  letter-spacing: 1px;
-  transition: .3s;
+.site-header .nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 9px;
+    letter-spacing: 1px;
+    transition: .3s;
 }
 
-nav .nav-links a:hover,
-nav .nav-links a.active {
-  color: var(--gold);
+.site-header .nav-links a:hover,
+.site-header .nav-links a.active {
+    color: var(--gold);
 }
 
 .menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--gold);
-  font-size: 25px;
-  cursor: pointer;
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 25px;
+    cursor: pointer;
 }
 
 /* HERO */
@@ -116,11 +115,12 @@ nav .nav-links a.active {
 .hero::after {
     content: "";
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     width: min(48vw, 570px);
     aspect-ratio: 1;
     border: 1px solid #d7b56d20;
     border-radius: 50%;
+    pointer-events: none;
 }
 
 .hero::before {
@@ -138,6 +138,8 @@ nav .nav-links a.active {
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
     max-width: 850px;
     width: 100%;
     animation: appear 1s ease both;
@@ -305,11 +307,7 @@ footer span {
 /* TABLET */
 
 @media (max-width: 900px) {
-    .site-header {
-        padding: 12px 3%;
-    }
-
-    .navbar {
+    .site-header .navbar {
         padding: 12px 15px;
     }
 
@@ -317,54 +315,16 @@ footer span {
         gap: 10px;
     }
 
-    .nav-links a {
+    .site-header .nav-links a {
         font-size: 9px;
     }
 }
 
-/* MOBILE */
+/* MOBILE CONTENT */
 
 @media (max-width: 720px) {
     .site-header {
-        padding: 10px 14px;
-    }
-
-    .navbar {
-        min-height: 58px;
-        flex-wrap: wrap;
-    }
-
-    .logo {
-        font-size: 19px;
-    }
-
-    .menu-toggle {
-        display: grid;
-        place-items: center;
-    }
-
-    .nav-links {
         display: none;
-        width: 100%;
-        padding: 12px 0 8px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 4px;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .nav-links a {
-        padding: 12px;
-        font-size: 12px;
-        border-radius: 7px;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        background: #641d3540;
     }
 
     .hero {
@@ -429,27 +389,170 @@ footer span {
         transition-duration: .01ms !important;
     }
 }
+
+/* MOBILE LIQUID GLASS NAVIGATION */
+
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    body {
+        padding-bottom: 110px !important;
+    }
+
+    .bottom-nav {
+        position: fixed;
+        top: auto;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+        width: auto;
+        height: 76px;
+        padding: 7px;
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+        border-radius: 25px;
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+        isolation: isolate;
+    }
+
+    .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        border-radius: 50%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        min-width: 0;
+        height: 62px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0;
+        border-radius: 18px;
+        color: #f8f5ef;
+        background: transparent;
+        text-decoration: none;
+        font: 500 9px "Montserrat", sans-serif;
+        cursor: pointer;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+        background: linear-gradient(
+            145deg,
+            rgba(255,255,255,.22),
+            rgba(215,181,109,.16),
+            rgba(100,29,53,.25)
+        );
+        border: 1px solid rgba(255,255,255,.32);
+        box-shadow:
+            inset 0 1px 7px rgba(255,255,255,.25),
+            0 0 14px rgba(215,181,109,.15);
+    }
+
+    .bottom-nav a.active .nav-icon,
+    .bottom-nav button.active .nav-icon {
+        transform: translateY(-1px);
+        filter: drop-shadow(0 0 5px rgba(243,223,173,.75));
+    }
+
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 98px;
+        z-index: 10000;
+        min-width: 175px;
+        padding: 9px;
+        border: 1px solid rgba(255,255,255,.45);
+        border-radius: 17px;
+        color: var(--gold-light);
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.20),
+            rgba(55,35,34,.88)
+        );
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        box-shadow:
+            0 12px 30px #0008,
+            inset 0 1px 2px #ffffff45;
+    }
+
+    .menu-popup.show {
+        display: block;
+    }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .menu-popup a:hover {
+        background: #ffffff18;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+<!-- DESKTOP NAVBAR -->
 
 <header class="site-header">
     <nav class="navbar" aria-label="Navigasi utama">
+        <a href="home.html" class="logo">PG 620</a>
 
-        <a href="index.html" class="logo">PG 620</a>
-
-        <button
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Buka menu"
-            aria-expanded="false"
-            aria-controls="navLinks"
-        >☰</button>
-
-        <div class="nav-links" id="navLinks">
+        <div class="nav-links">
             <a href="home.html">Home</a>
             <a href="about.html" class="active">Tentang 620</a>
             <a href="gallery.html">Gallery 620</a>
@@ -459,7 +562,6 @@ footer span {
             <a href="timing.html">Timing Acara</a>
             <a href="contact.html">Contact</a>
         </div>
-
     </nav>
 </header>
 
@@ -524,8 +626,6 @@ footer span {
         </p>
     </section>
 
-    <!-- VALUES -->
-
     <section class="values-title">
         <div class="label">OUR FOUNDATION</div>
         <h2>What We Believe</h2>
@@ -550,10 +650,9 @@ footer span {
             <h3>Dedication</h3>
             <p>Menghadirkan karya melalui proses bukan lewat protes.</p>
         </div>
+
     </section>
 </main>
-
-
 
 <!-- FOOTER -->
 
@@ -563,33 +662,76 @@ footer span {
     <p>AL-MUBTARIZ GENERATION</p>
 </footer>
 
-<!-- JAVASCRIPT -->
+<!-- MOBILE BOTTOM NAV -->
+
+<nav class="bottom-nav" aria-label="Navigasi bawah">
+    <a href="home.html" data-page="home.html">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="committee.html" data-page="committee.html">
+        <span class="nav-icon">♧</span>
+        <span>Panitia</span>
+    </a>
+
+    <a href="gallery.html" data-page="gallery.html">
+        <span class="nav-icon">▧</span>
+        <span>Galeri</span>
+    </a>
+
+    <a href="video.html" data-page="video.html">
+        <span class="nav-icon">▷</span>
+        <span>Video</span>
+    </a>
+
+    <button type="button" id="bottomMenuToggle"
+        aria-expanded="false" aria-controls="bottomMenu">
+        <span class="nav-icon">☰</span>
+        <span>Menu</span>
+    </button>
+</nav>
+
+<div class="menu-popup" id="bottomMenu">
+    <a href="about.html">📖 Tentang</a>
+    <a href="timing.html">📅 Jadwal acara</a>
+    <a href="countdown.html">⏳ Countdown</a>
+    <a href="contact.html">✉ Kontak</a>
+    <a href="dashboard.html">⚙️ Admin</a>
+</div>
 
 <script>
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+/* MOBILE BOTTOM NAV */
 
-menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
+(() => {
+    const page = location.pathname.split("/").pop() || "home.html";
 
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Tutup menu" : "Buka menu"
-    );
-
-    menuToggle.textContent = isOpen ? "×" : "☰";
-});
-
-navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Buka menu");
-        menuToggle.textContent = "☰";
+    document.querySelectorAll(".bottom-nav a[data-page]").forEach(link => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
     });
-});
+
+    const toggle = document.getElementById("bottomMenuToggle");
+    const popup = document.getElementById("bottomMenu");
+
+    if (!toggle || !popup) return;
+
+    toggle.addEventListener("click", () => {
+        const opened = popup.classList.toggle("show");
+
+        toggle.classList.toggle("active", opened);
+        toggle.setAttribute("aria-expanded", String(opened));
+    });
+
+    document.addEventListener("click", event => {
+        if (!popup.contains(event.target) && !toggle.contains(event.target)) {
+            popup.classList.remove("show");
+            toggle.classList.remove("active");
+            toggle.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
 </script>
 
 </body>

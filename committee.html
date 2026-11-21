@@ -66,106 +66,59 @@ body {
     right: -150px;
 }
 
-/* NAVBAR */
-nav {
-  position: fixed;
-  top: 15px;
-  left: 5%;
-  width: 90%;
-  padding: 16px 22px;
-  background: #ffffff0d;
-  border: 1px solid #ffffff20;
-  border-radius: 16px;
-  backdrop-filter: blur(20px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
+/* DESKTOP NAVBAR */
+.site-header {
+    position: fixed;
+    top: 15px;
+    left: 5%;
+    width: 90%;
+    padding: 16px 22px;
+    background: #ffffff0d;
+    border: 1px solid #ffffff20;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
 }
 
 .logo {
-  font-family: 'Cinzel', serif;
-  color: var(--gold);
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-decoration: none;
+    font-family: "Cinzel", serif;
+    color: var(--gold);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-decoration: none;
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 17px;
+.site-header .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 17px;
 }
 
-nav .nav-links a {
-  color: #ddd;
-  text-decoration: none;
-  font-size: 9px;
-  letter-spacing: 1px;
-  transition: .3s;
+.site-header .nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 9px;
+    letter-spacing: 1px;
+    transition: .3s;
 }
 
-nav .nav-links a:hover,
-nav .nav-links a.active {
-  color: var(--gold);
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--gold);
-  font-size: 25px;
-  cursor: pointer;
+.site-header .nav-links a:hover,
+.site-header .nav-links a.active {
+    color: var(--gold);
 }
 
 /* HERO */
 .hero {
-    text-align: center;
-    padding: 160px 20px 65px;
-}
-
-.subtitle {
-    color: var(--gold);
-    font-size: 10px;
-    letter-spacing: 5px;
-    margin-bottom: 18px;
-}
-
-h1 {
-    font-family: "Cinzel", serif;
-    color: var(--gold-light);
-    font-size: clamp(38px, 7vw, 65px);
-    font-weight: 500;
-}
-
-.hero p {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 2;
-    margin-top: 15px;
-}
-
-.line {
-    width: 110px;
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--gold),
-        transparent
-    );
-    margin: 25px auto;
-}
-.hero {
     position: relative;
     min-height: 65vh;
     padding: 155px 22px 55px;
-
     display: grid;
     place-items: center;
-
     text-align: center;
     overflow: hidden;
 }
@@ -175,10 +128,8 @@ h1 {
     content: "";
     position: absolute;
     z-index: -1;
-
     width: min(48vw, 570px);
     aspect-ratio: 1;
-
     border: 1px solid #d7b56d20;
     border-radius: 50%;
     pointer-events: none;
@@ -187,7 +138,6 @@ h1 {
 .hero::before {
     top: 18%;
     left: -28%;
-
     box-shadow:
         0 0 0 22px #d7b56d08,
         0 0 0 48px #d7b56d05;
@@ -196,7 +146,6 @@ h1 {
 .hero::after {
     right: -28%;
     bottom: -12%;
-
     box-shadow:
         0 0 0 22px #d7b56d08,
         0 0 0 48px #d7b56d05;
@@ -209,7 +158,6 @@ h1 {
 
 .eyebrow {
     margin-bottom: 24px;
-
     color: var(--gold);
     font-size: 11px;
     font-weight: 600;
@@ -220,7 +168,6 @@ h1 {
     color: var(--gold-light);
     font: 700 clamp(45px, 9vw, 90px)/1.2 "Cinzel", serif;
     letter-spacing: 2px;
-
     text-shadow: 0 8px 45px #0008;
 }
 
@@ -228,13 +175,7 @@ h1 {
     width: 110px;
     height: 1px;
     margin: 28px auto;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--gold),
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 .hero-description {
@@ -244,66 +185,7 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* =========================
-   GALLERY SECTION
-========================= */
-
-.gallery-section {
-    width: 88%;
-    max-width: 1100px;
-    margin: 0 auto 80px;
-}
-
-/* FILTER BUTTONS */
-
-.filters {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-
-    margin: 10px 0 40px;
-}
-
-.filters button {
-    padding: 12px 22px;
-
-    border: 1px solid #ffffff25;
-    border-radius: 30px;
-
-    color: #ddd;
-    background: #ffffff09;
-
-    font-family: "Montserrat", sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-    transition: .3s;
-}
-
-.filters button:hover {
-    border-color: var(--gold);
-    color: var(--gold-light);
-}
-
-.filters button.active {
-    color: #17111a;
-    border-color: transparent;
-
-    background: linear-gradient(
-        135deg,
-        var(--gold-light),
-        #bd9148
-    );
-
-    box-shadow: 0 5px 20px #d7b56d25;
-}
-
-
-/* INTRO STATS */
+/* STATS */
 .stats {
     display: flex;
     justify-content: center;
@@ -525,18 +407,6 @@ h1 {
     font-size: 12px;
 }
 
-/* TEAM LABEL */
-.team-label {
-    display: inline-block;
-    color: var(--gold);
-    border: 1px solid #d7b56d55;
-    border-radius: 30px;
-    padding: 7px 15px;
-    font-size: 9px;
-    letter-spacing: 2px;
-    margin-bottom: 22px;
-}
-
 /* MODAL */
 .modal {
     position: fixed;
@@ -573,6 +443,12 @@ h1 {
     margin: 0 auto 20px;
     overflow: hidden;
     background: linear-gradient(135deg, var(--brown), var(--maroon));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-light);
+    font-family: "Cinzel", serif;
+    font-size: 25px;
 }
 
 .modal-photo img {
@@ -640,6 +516,23 @@ footer span {
     }
 }
 
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE NAV HIDDEN ON DESKTOP */
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
 /* RESPONSIVE */
 @media(max-width: 1000px) {
     .grid {
@@ -647,50 +540,254 @@ footer span {
     }
 }
 
-@media(max-width: 750px) {
-    .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+/* MOBILE LIQUID GLASS - SAME AS GALLERY */
+@media(max-width: 720px) {
+    body {
+        padding-bottom: 108px;
     }
 
-    nav {
-        padding: 15px 18px;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
+    .site-header {
         display: none;
-        position: absolute;
-        top: 65px;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 10px;
-        background: #17111f;
-        border: 1px solid #ffffff20;
-        border-radius: 12px;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .nav-links a {
-        padding: 14px;
-        font-size: 10px;
     }
 
     .hero {
-        padding-top: 130px;
+        min-height: 55vh;
+        padding: 85px 18px 45px;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 11vw, 65px);
+    }
+
+    .eyebrow {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .hero-description {
+        font-size: 11px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
     }
 
     .section {
-        padding-left: 5%;
-        padding-right: 5%;
+        padding: 30px 5% 55px;
+    }
+
+    .card {
+        padding: 22px 10px;
+    }
+
+    .photo {
+        width: 90px;
+        height: 90px;
+        font-size: 23px;
+    }
+
+    .name {
+        font-size: 12px;
+    }
+
+    .role {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .desc {
+        font-size: 9px;
+    }
+
+    .tools {
+        gap: 10px;
+    }
+
+    .search-box,
+    .filter-box {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* LIQUID GLASS BOTTOM NAV */
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        height: 76px;
+        padding: 7px;
+        z-index: 9999;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+        border-radius: 25px;
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+    }
+
+    .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        border-radius: 50%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        height: 62px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0;
+        border-radius: 18px;
+        background: transparent;
+        color: #f8f5ef;
+        text-decoration: none;
+        font: 500 9px "Montserrat", sans-serif;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+    }
+
+    .bottom-nav a.active::before,
+    .bottom-nav button.active::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: 18px;
+        border: 1px solid #d7b56d88;
+        background: linear-gradient(
+            145deg,
+            #ffffff35,
+            #d7b56d20,
+            #641d3555
+        );
+        box-shadow:
+            inset 0 1px 8px #ffffff25,
+            0 0 15px #d7b56d22;
+    }
+
+    .bottom-nav a.active::after,
+    .bottom-nav button.active::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 9px;
+        width: 11px;
+        height: 14px;
+        border: 1px solid #fff9;
+        border-radius: 60% 60% 60% 10%;
+        transform: rotate(-38deg);
+        background: radial-gradient(
+            ellipse at 30% 22%,
+            #fff 0 12%,
+            #f3dfad 32%,
+            #d7b56d 65%,
+            #641d35 100%
+        );
+        box-shadow: 0 0 8px #fff9, 0 0 13px #d7b56d99;
+        pointer-events: none;
+    }
+
+    .bottom-nav a.active .nav-icon {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 5px #d7b56d);
+    }
+
+    /* POPUP MENU */
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 98px;
+        z-index: 10000;
+        min-width: 175px;
+        padding: 9px;
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+        border-radius: 17px;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.65) 70%,
+            rgba(255,255,255,.12)
+        );
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.4),
+            inset 0 2px 3px rgba(255,255,255,.35);
+    }
+
+    .menu-popup.show {
+        display: block;
+        animation: fadeUp .2s ease;
+    }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+        transition: .2s;
+    }
+
+    .menu-popup a:hover {
+        background: #ffffff20;
     }
 }
 
@@ -709,20 +806,11 @@ footer span {
     }
 
     .name {
-        font-size: 12px;
-    }
-
-    .role {
-        font-size: 8px;
+        font-size: 11px;
     }
 
     .tools {
         flex-direction: column;
-    }
-
-    .search-box,
-    .filter-box {
-        width: 100%;
     }
 }
 </style>
@@ -733,16 +821,11 @@ footer span {
 <div class="background-glow glow-one"></div>
 <div class="background-glow glow-two"></div>
 
-<!-- NAVBAR -->
-<nav>
-    <a href="index.html" class="logo">PG 620</a>
+<!-- DESKTOP NAVBAR -->
+<nav class="site-header">
+    <a href="home.html" class="logo">PG 620</a>
 
-    <button class="menu-toggle" id="menuToggle"
-        aria-label="Buka menu" aria-expanded="false">
-        ☰
-    </button>
-
-    <div class="nav-links" id="navLinks">
+    <div class="nav-links">
         <a href="home.html">Home</a>
         <a href="about.html">Tentang 620</a>
         <a href="gallery.html">Gallery 620</a>
@@ -751,44 +834,40 @@ footer span {
         <a href="video.html">Live Streaming</a>
         <a href="timing.html">Timing Acara</a>
         <a href="contact.html">Contact</a>
-
     </div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
+    <div class="hero-content">
+        <div class="eyebrow">✦ BEHIND THE GREAT PERFORMANCE ✦</div>
 
-    <div class="subtitle">
-        ✦ BEHIND THE GREAT PERFORMANCE ✦
-    </div>
+        <h1>Our Committee</h1>
 
-    <h1>Our Committee</h1>
+        <div class="gold-line"></div>
 
-    <div class="line"></div>
+        <p class="hero-description">
+            Orang-orang hebat di balik terselenggaranya
+            <br>
+            Panggung Gembira 620.
+        </p>
 
-    <p>
-        Orang-orang hebat di balik terselenggaranya
-        <br>
-        Panggung Gembira 620.
-    </p>
+        <div class="stats">
+            <div class="stat">
+                <strong id="totalMembers">08</strong>
+                <span>COMMITTEE</span>
+            </div>
 
-    <div class="stats">
-        <div class="stat">
-            <strong id="totalMembers">08</strong>
-            <span>COMMITTEE</span>
+            <div class="stat">
+                <strong>02</strong>
+                <span>MAIN TEAMS</span>
+            </div>
         </div>
-
-        <div class="stat">
-            <strong>02</strong>
-            <span>MAIN TEAMS</span>
-        </div>
     </div>
-
 </header>
 
 <!-- LEADERSHIP -->
 <section class="section">
-
     <h2 class="section-title">Leadership</h2>
 
     <div class="tools">
@@ -797,10 +876,10 @@ footer span {
             id="searchInput"
             class="search-box"
             placeholder="Cari nama atau jabatan panitia..."
-            aria-label="Cari panitia">
+            aria-label="Cari panitia"
+        >
 
-        <select id="filterSelect" class="filter-box"
-            aria-label="Filter divisi">
+        <select id="filterSelect" class="filter-box" aria-label="Filter divisi">
             <option value="all">Semua Divisi</option>
             <option value="leadership">Leadership</option>
             <option value="creative">Creative Team</option>
@@ -809,9 +888,9 @@ footer span {
 
     <div class="grid" id="memberGrid">
 
-        <!-- MEMBER 01 -->
-        <div class="card" data-team="leadership"
-            data-name="nama ketua"
+        <div class="card"
+            data-team="leadership"
+            data-name="adnan maulana sidiq"
             data-role="ketua pelaksana"
             data-desc="Pimpinan pelaksana acara dan mengoordinasikan seluruh bagian kepanitiaan.">
             <div class="photo">01</div>
@@ -821,57 +900,57 @@ footer span {
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
-        <!-- MEMBER 02 -->
-        <div class="card" data-team="leadership"
-            data-name="nama wakil"
-            data-role="wakil ketua"
-            data-desc="Mendampingi ketua pelaksana dan membantu koordinasi seluruh kegiatan.">
-            <div class="photo">02</div>
-            <div class="role">sekretaris</div>
-            <div class="name">muhamad iqballudin</div>
-            <div class="desc">administrasi dan properti acara</div>
-            <button class="detail-btn">LIHAT PROFIL</button>
-        </div>
-
-        <!-- MEMBER 03 -->
-        <div class="card" data-team="leadership"
-            data-name="nama sekretaris"
+        <div class="card"
+            data-team="leadership"
+            data-name="muhamad iqballudin"
             data-role="sekretaris"
-            data-desc="Bertanggung jawab atas administrasi, surat-menyurat, dan dokumentasi kepanitiaan.">
-            <div class="photo">03</div>
-            <div class="role">bendahara</div>
-            <div class="name">langit zayied maliki</div>
-            <div class="desc">pengelola keuangan</div>
+            data-desc="Bertanggung jawab atas administrasi dan membantu kebutuhan properti acara.">
+            <div class="photo">02</div>
+            <div class="role">Sekretaris</div>
+            <div class="name">muhamad iqballudin</div>
+            <div class="desc">Administrasi dan properti acara</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
-        <!-- MEMBER 04 -->
-        <div class="card" data-team="leadership"
-            data-name="nama bendahara"
+        <div class="card"
+            data-team="leadership"
+            data-name="langit zayied maliki"
             data-role="bendahara"
             data-desc="Mengelola anggaran dan keuangan kegiatan Panggung Gembira 620.">
+            <div class="photo">03</div>
+            <div class="role">Bendahara</div>
+            <div class="name">langit zayied maliki</div>
+            <div class="desc">Pengelola keuangan</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+
+        <div class="card"
+            data-team="leadership"
+            data-name="syahdan kristhoper abimannyu"
+            data-role="penampilan"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
             <div class="photo">04</div>
-            <div class="role">penampilan</div>
+            <div class="role">Penampilan</div>
             <div class="name">syahdan kristhoper abimannyu</div>
-            <div class="desc">konsep penampilan di dalam acara</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
-        <!-- MEMBER 05 -->
-        <div class="card" data-team="creative"
-            data-name="nama koordinator acara"
-            data-role="acara"
-            data-desc="Menyusun konsep, mengatur susunan acara, dan memastikan kegiatan berjalan sesuai rencana.">
+        <div class="card"
+            data-team="creative"
+            data-name="fajar ramdhani abdullah"
+            data-role="keamanan"
+            data-desc="Bertanggung jawab menjaga keamanan dan ketertiban selama acara berlangsung.">
             <div class="photo">05</div>
-            <div class="role">keamanan</div>
+            <div class="role">Keamanan</div>
             <div class="name">fajar ramdhani abdullah</div>
-            <div class="desc">mengamankan acara</div>
+            <div class="desc">Mengamankan acara</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
-        <!-- MEMBER 06 -->
-        <div class="card" data-team="creative"
-            data-name="nama koordinator dekorasi"
+        <div class="card"
+            data-team="creative"
+            data-name="melvin nabihan abdul kholiq"
             data-role="dekorasi"
             data-desc="Mengatur visual, dekorasi, dan tata panggung agar acara memiliki tampilan yang menarik.">
             <div class="photo">06</div>
@@ -881,9 +960,9 @@ footer span {
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
-        <!-- MEMBER 07 -->
-        <div class="card" data-team="creative"
-            data-name="nama koordinator multimedia"
+        <div class="card"
+            data-team="creative"
+            data-name="aqsa hedi nugraha"
             data-role="multimedia"
             data-desc="Mengelola kebutuhan audio, visual, dan dokumentasi multimedia acara.">
             <div class="photo">07</div>
@@ -893,9 +972,9 @@ footer span {
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
-        <!-- MEMBER 08 -->
-        <div class="card" data-team="creative"
-            data-name="nama koordinator perlengkapan"
+        <div class="card"
+            data-team="creative"
+            data-name="hafiz alfino"
             data-role="perlengkapan"
             data-desc="Menyiapkan perlengkapan dan kebutuhan teknis untuk mendukung jalannya acara.">
             <div class="photo">08</div>
@@ -910,64 +989,67 @@ footer span {
     <div class="no-result" id="noResult">
         Nama panitia tidak ditemukan.
     </div>
-
 </section>
 
 <!-- PROFILE MODAL -->
 <div class="modal" id="profileModal">
     <div class="modal-content">
-
         <div class="modal-photo" id="modalPhoto"></div>
-
         <div class="modal-role" id="modalRole"></div>
-
         <div class="modal-name" id="modalName"></div>
-
         <div class="modal-desc" id="modalDesc"></div>
 
         <button class="close-modal" id="closeModal">
             TUTUP PROFIL
         </button>
-
     </div>
 </div>
 
 <!-- FOOTER -->
-
 <footer>
     <p>© 2027 <span>PANGGUNG GEMBIRA 620</span></p>
     <p>PONDOK PESANTREN MODERN MAFAZAH</p>
     <p>AL-MUBTARIZ GENERATION</p>
 </footer>
 
-<!-- JAVASCRIPT -->
+<!-- BOTTOM NAVIGATION MOBILE -->
+<nav class="bottom-nav" aria-label="Navigasi bawah">
+    <a href="home.html" data-page="home.html">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="committee.html" data-page="committee.html">
+        <span class="nav-icon">♧</span>
+        <span>Panitia</span>
+    </a>
+
+    <a href="gallery.html" data-page="gallery.html">
+        <span class="nav-icon">▧</span>
+        <span>Galeri</span>
+    </a>
+
+    <a href="video.html" data-page="video.html">
+        <span class="nav-icon">▷</span>
+        <span>Video</span>
+    </a>
+
+    <button type="button" id="bottomMenuToggle"
+        aria-expanded="false" aria-controls="bottomMenu">
+        <span class="nav-icon">☰</span>
+        <span>Menu</span>
+    </button>
+</nav>
+
+<div class="menu-popup" id="bottomMenu">
+    <a href="about.html">📖 Tentang</a>
+    <a href="timing.html">📅 Jadwal acara</a>
+    <a href="countdown.html">⏳ Countdown</a>
+    <a href="contact.html">✉ Kontak</a>
+    <a href="dashboard.html">⚙️ Admin</a>
+</div>
 
 <script>
-/* MOBILE MENU */
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-
-    menuToggle.setAttribute("aria-expanded", isOpen);
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Tutup menu" : "Buka menu"
-    );
-
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-});
-
-navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.textContent = "☰";
-    });
-});
-
-
 /* SEARCH AND FILTER */
 const searchInput = document.getElementById("searchInput");
 const filterSelect = document.getElementById("filterSelect");
@@ -998,13 +1080,11 @@ function filterMembers() {
         if (visible) visibleCount++;
     });
 
-    noResult.style.display =
-        visibleCount === 0 ? "block" : "none";
+    noResult.style.display = visibleCount === 0 ? "block" : "none";
 }
 
 searchInput.addEventListener("input", filterMembers);
 filterSelect.addEventListener("change", filterMembers);
-
 
 /* PROFILE MODAL */
 const modal = document.getElementById("profileModal");
@@ -1015,9 +1095,7 @@ const modalDesc = document.getElementById("modalDesc");
 const closeModal = document.getElementById("closeModal");
 
 document.querySelectorAll(".detail-btn").forEach(button => {
-
     button.addEventListener("click", () => {
-
         const card = button.closest(".card");
         const photo = card.querySelector(".photo");
 
@@ -1026,8 +1104,7 @@ document.querySelectorAll(".detail-btn").forEach(button => {
         const image = photo.querySelector("img");
 
         if (image) {
-            const copiedImage = image.cloneNode(true);
-            modalPhoto.appendChild(copiedImage);
+            modalPhoto.appendChild(image.cloneNode(true));
         } else {
             modalPhoto.textContent = photo.textContent;
         }
@@ -1041,9 +1118,7 @@ document.querySelectorAll(".detail-btn").forEach(button => {
         modal.classList.add("show");
         document.body.style.overflow = "hidden";
         closeModal.focus();
-
     });
-
 });
 
 function hideModal() {
@@ -1054,22 +1129,49 @@ function hideModal() {
 closeModal.addEventListener("click", hideModal);
 
 modal.addEventListener("click", event => {
-    if (event.target === modal) {
-        hideModal();
-    }
+    if (event.target === modal) hideModal();
 });
 
 document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-        hideModal();
-    }
+    if (event.key === "Escape") hideModal();
 });
-
 
 /* TOTAL MEMBERS */
 document.getElementById("totalMembers").textContent =
     String(cards.length).padStart(2, "0");
 
+/* BOTTOM NAV ACTIVE PAGE */
+(() => {
+    const page = location.pathname.split("/").pop() || "home.html";
+
+    document.querySelectorAll(".bottom-nav a[data-page]").forEach(link => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
+    });
+
+    const toggle = document.getElementById("bottomMenuToggle");
+    const popup = document.getElementById("bottomMenu");
+
+    if (!toggle || !popup) return;
+
+    toggle.addEventListener("click", event => {
+        event.stopPropagation();
+
+        const opened = popup.classList.toggle("show");
+
+        toggle.classList.toggle("active", opened);
+        toggle.setAttribute("aria-expanded", String(opened));
+    });
+
+    document.addEventListener("click", event => {
+        if (!popup.contains(event.target) && !toggle.contains(event.target)) {
+            popup.classList.remove("show");
+            toggle.classList.remove("active");
+            toggle.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
 </script>
 
 </body>

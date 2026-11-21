@@ -8,7 +8,6 @@
 <title>PG 620 | Panggung Gembira</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
@@ -43,9 +42,6 @@ body {
         radial-gradient(circle at 85% 80%, #641d3544, transparent 40%),
         var(--navy);
 }
-
-
-
 
 /* HERO */
 .hero {
@@ -299,11 +295,8 @@ footer span {
     }
 }
 
-
-/* MOBILE */
+/* MOBILE CONTENT */
 @media (max-width: 720px) {
-    
-   
     .hero {
         min-height: 95vh;
         padding: 130px 20px 70px;
@@ -373,151 +366,139 @@ footer span {
     }
 }
 
-
-/* LIQUID GLASS BOTTOM NAVIGATION */
-.bottom-nav {
+/* MOBILE LIQUID GLASS NAVIGATION */
+/* Desktop tidak menampilkan navigasi bawah */
+.bottom-nav,
+.menu-popup {
     display: none;
 }
 
+/* HP: Liquid Glass sama seperti Gallery */
 @media (max-width: 720px) {
     body {
-        padding-bottom: 110px;
+        padding-bottom: 110px !important;
     }
 
     .bottom-nav {
-        display: flex;
         position: fixed;
-        bottom: 14px;
+        top: auto;
         left: 12px;
-        width: calc(100% - 24px);
-        height: 78px;
-        padding: 7px;
-
+        right: 12px;
+        bottom: 12px;
+        z-index: 9999;
+        display: flex;
         align-items: center;
         justify-content: space-around;
-
-        background: rgba(100, 29, 53, 0.48);
-        backdrop-filter: blur(25px) saturate(180%);
-        -webkit-backdrop-filter: blur(25px) saturate(180%);
-
-        border: 1px solid rgba(255, 255, 255, 0.28);
+        gap: 3px;
+        width: auto;
+        height: 76px;
+        padding: 7px;
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
         border-radius: 25px;
-
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
         box-shadow:
-            0 12px 35px rgba(0, 0, 0, .35),
-            inset 0 1px 2px rgba(255,255,255,.3);
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+        isolation: isolate;
+    }
 
-        z-index: 9999;
-        overflow: visible;
+    .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        border-radius: 50%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
     }
 
     .bottom-nav a,
     .bottom-nav button {
         position: relative;
+        z-index: 1;
         flex: 1;
-        height: 65px;
-
+        min-width: 0;
+        height: 62px;
+        padding: 4px 2px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 5px;
-
-        color: rgba(255, 245, 233, .8);
-        text-decoration: none;
+        gap: 4px;
+        border: 0;
+        border-radius: 18px;
+        color: #f8f5ef;
         background: transparent;
-        border: none;
-
-        font-family: 'Montserrat', sans-serif;
-        font-size: 10px;
-        font-weight: 500;
+        text-decoration: none;
+        font: 500 9px 'Montserrat', sans-serif;
         cursor: pointer;
-        z-index: 1;
-        transition: .35s ease;
     }
 
     .bottom-nav .nav-icon {
-        font-size: 21px;
-        transition: .35s ease;
+        font-size: 20px;
+        line-height: 1.2;
     }
 
-    /* MENU AKTIF */
     .bottom-nav a.active,
     .bottom-nav button.active {
         color: #f3dfad;
-    }
-
-    .bottom-nav a.active::before,
-    .bottom-nav button.active::before {
-        content: "";
-        position: absolute;
-        inset: -1px 5px;
-        z-index: -1;
-
         background: linear-gradient(
             145deg,
             rgba(255,255,255,.22),
-            rgba(215,181,109,.13),
-            rgba(100,29,53,.5)
+            rgba(215,181,109,.16),
+            rgba(100,29,53,.25)
         );
-
-        border: 1px solid rgba(215,181,109,.45);
-        border-radius: 22px 22px 30px 30px;
-
+        border: 1px solid rgba(255,255,255,.32);
         box-shadow:
-            0 0 20px rgba(215,181,109,.18),
-            inset 0 2px 8px rgba(255,255,255,.15);
+            inset 0 1px 7px rgba(255,255,255,.25),
+            0 0 14px rgba(215,181,109,.15);
     }
 
-    /* EFEK TETESAN AIR */
-    .bottom-nav a.active::after,
-    .bottom-nav button.active::after {
-        content: "";
-        position: absolute;
-        width: 9px;
-        height: 9px;
-        top: 2px;
-        right: 17px;
-
-        background: radial-gradient(
-            circle at 30% 25%,
-            #fff 0%,
-            #f3dfad 25%,
-            #d7b56d 65%,
-            #641d35 100%
-        );
-
-        border-radius: 50% 50% 50% 10%;
-        transform: rotate(-35deg);
-
-        box-shadow:
-            0 0 9px rgba(255,255,255,.7),
-            0 0 15px rgba(215,181,109,.5);
+    .bottom-nav a.active .nav-icon,
+    .bottom-nav button.active .nav-icon {
+        transform: translateY(-1px);
+        filter: drop-shadow(0 0 5px rgba(243,223,173,.75));
     }
 
-    .bottom-nav a.active .nav-icon {
-        transform: translateY(-3px) scale(1.12);
-        color: #f3dfad;
-        filter: drop-shadow(0 0 7px rgba(215,181,109,.7));
-    }
-
-    /* POPUP MENU */
     .menu-popup {
         display: none;
         position: fixed;
-        bottom: 103px;
         right: 15px;
-        min-width: 175px;
-        padding: 10px;
-
-        background: rgba(73, 49, 38, .78);
-        backdrop-filter: blur(22px);
-        -webkit-backdrop-filter: blur(22px);
-
-        border: 1px solid rgba(215,181,109,.4);
-        border-radius: 18px;
+        bottom: 98px;
         z-index: 10000;
-        box-shadow: 0 10px 30px #0006;
+        min-width: 175px;
+        padding: 9px;
+        border: 1px solid rgba(255,255,255,.45);
+        border-radius: 17px;
+        color: var(--light);
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.20),
+            rgba(55,35,34,.88)
+        );
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        box-shadow:
+            0 12px 30px #0008,
+            inset 0 1px 2px #ffffff45;
     }
 
     .menu-popup.show {
@@ -526,109 +507,21 @@ footer span {
 
     .menu-popup a {
         display: block;
-        padding: 13px;
+        padding: 12px;
+        border-radius: 10px;
         color: #f3dfad;
         text-decoration: none;
         font-size: 12px;
-        border-radius: 10px;
     }
 
     .menu-popup a:hover {
-        background: rgba(255,255,255,.12);
+        background: #ffffff18;
     }
 }
-
-/* REALISTIC LIQUID GLASS WATER DROPLET */
-.bottom-nav a.active,
-.bottom-nav button.active {
-    position: relative;
-}
-
-.bottom-nav a.active::after,
-.bottom-nav button.active::after {
-    content: "";
-    position: absolute;
-
-    width: 15px;
-    height: 19px;
-    top: 1px;
-    right: 12px;
-
-    background:
-        radial-gradient(
-            ellipse at 30% 22%,
-            #ffffff 0%,
-            #ffffff 10%,
-            #f8e8c1 22%,
-            #d7b56d 48%,
-            #8c4b55 75%,
-            #4b1930 100%
-        );
-
-    border-radius: 60% 60% 60% 10%;
-    transform: rotate(-40deg);
-
-    border: 1px solid rgba(255,255,255,.75);
-
-    box-shadow:
-        0 0 5px rgba(255,255,255,.9),
-        0 0 12px rgba(215,181,109,.8),
-        0 3px 8px rgba(0,0,0,.35);
-
-    z-index: 5;
-    pointer-events: none;
-}
-
-
-/* TETESAN AIR AKTIF */
-.bottom-nav a.active,
-.bottom-nav button.active {
-    position: relative;
-}
-
-.bottom-nav a.active::after,
-.bottom-nav button.active::after {
-    content: "";
-    position: absolute;
-    top: 3px;
-    right: 10px;
-    width: 16px;
-    height: 20px;
-    display: block;
-
-    background: radial-gradient(
-        ellipse at 30% 25%,
-        white 0%,
-        #ffffff 12%,
-        #dffaff 25%,
-        #8bd3e4 50%,
-        #d7b56d 75%,
-        #641d35 100%
-    );
-
-    border: 1px solid white;
-    border-radius: 60% 60% 60% 10%;
-    transform: rotate(-40deg);
-
-    box-shadow:
-        0 0 8px white,
-        0 0 16px #8bd3e4,
-        0 3px 8px #0008;
-
-    z-index: 20;
-    pointer-events: none;
-
-    <a href="home.html" class="active">
-}
-
-
-
 </style>
 </head>
 
 <body>
-    
-
 
 <main>
 
@@ -737,81 +630,30 @@ footer span {
     <p>AL-MUBTARIZ GENERATION</p>
 </footer>
 
-<script>
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Tutup menu" : "Buka menu"
-    );
-
-    menuToggle.textContent = isOpen ? "×" : "☰";
-});
-
-navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Buka menu");
-        menuToggle.textContent = "☰";
-    });
-});
-
-
-/* ACTIVE BOTTOM NAVIGATION */
-const currentPage = window.location.pathname
-    .split("/")
-    .pop() || "home.html";
-
-document.querySelectorAll(".bottom-nav a").forEach(link => {
-    const linkPage = link.getAttribute("href");
-
-    if (linkPage === currentPage) {
-        link.classList.add("active");
-    }
-});
-
-/* MENU POPUP */
-function toggleBottomMenu() {
-    const menu = document.getElementById("bottomMenu");
-    const button = document.querySelector(".bottom-nav button");
-
-    const isOpen = menu.classList.toggle("show");
-
-    button.setAttribute("aria-expanded", String(isOpen));
-    button.classList.toggle("active", isOpen);
-}
-
-</script>
-
-<!-- BOTTOM NAVIGATION -->
+<!-- NAVIGASI BAWAH MOBILE -->
 <nav class="bottom-nav" aria-label="Navigasi bawah">
-    <a href="home.html">
-        <span class="nav-icon">🏠</span>
+    <a href="home.html" data-page="home.html">
+        <span class="nav-icon">⌂</span>
         <span>Home</span>
     </a>
 
-    <a href="committee.html">
-        <span class="nav-icon">👥</span>
+    <a href="committee.html" data-page="committee.html">
+        <span class="nav-icon">♧</span>
         <span>Panitia</span>
     </a>
 
-    <a href="gallery.html">
-        <span class="nav-icon">🖼️</span>
+    <a href="gallery.html" data-page="gallery.html">
+        <span class="nav-icon">▧</span>
         <span>Galeri</span>
     </a>
 
-    <a href="video.html">
-        <span class="nav-icon">🎬</span>
+    <a href="video.html" data-page="video.html">
+        <span class="nav-icon">▷</span>
         <span>Video</span>
     </a>
 
-    <button type="button" onclick="toggleBottomMenu()" aria-expanded="false" aria-controls="bottomMenu">
+    <button type="button" id="bottomMenuToggle"
+        aria-expanded="false" aria-controls="bottomMenu">
         <span class="nav-icon">☰</span>
         <span>Menu</span>
     </button>
@@ -819,11 +661,43 @@ function toggleBottomMenu() {
 
 <div class="menu-popup" id="bottomMenu">
     <a href="about.html">📖 Tentang</a>
-    <a href="timing.html">📅 Jadwal</a>
+    <a href="timing.html">📅 Jadwal acara</a>
     <a href="countdown.html">⏳ Countdown</a>
-    <a href="contact.html">📞 Kontak</a>
-    <a href="dasboard.html">⚙️ Admin</a>
+    <a href="contact.html">✉ Kontak</a>
+    <a href="dashboard.html">⚙️ Admin</a>
 </div>
+
+<script>
+(() => {
+    const page = location.pathname.split("/").pop() || "home.html";
+
+    document.querySelectorAll(".bottom-nav a[data-page]").forEach(link => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
+    });
+
+    const toggle = document.getElementById("bottomMenuToggle");
+    const popup = document.getElementById("bottomMenu");
+
+    if (!toggle || !popup) return;
+
+    toggle.addEventListener("click", () => {
+        const opened = popup.classList.toggle("show");
+
+        toggle.classList.toggle("active", opened);
+        toggle.setAttribute("aria-expanded", String(opened));
+    });
+
+    document.addEventListener("click", event => {
+        if (!popup.contains(event.target) && !toggle.contains(event.target)) {
+            popup.classList.remove("show");
+            toggle.classList.remove("active");
+            toggle.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
+</script>
 
 </body>
 </html>
