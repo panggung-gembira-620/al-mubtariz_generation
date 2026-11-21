@@ -750,7 +750,22 @@ footer span { color: var(--gold); }
 }
 </style>
 </head>
+<audio id="backsound" src="./onty.mp3.mp3"
+loop preload="auto"></audio>
 
+<script>
+const audio = document.getElementById("backsound");
+
+audio.volume = 0.5;
+
+document.addEventListener("click", function() {
+  audio.play();
+}, { once: true });
+
+document.addEventListener("touchstart", function() {
+  audio.play();
+}, { once: true });
+</script>
 <body>
 
 <!-- NAVBAR DESKTOP -->
