@@ -84,7 +84,45 @@ footer{text-align:center;color:#777;padding:35px}
   <button onclick="showData('site_pages')">Halaman</button>
   <button onclick="showData('videos')">Video</button>
  </nav>
+<div class="card" style="margin-bottom:20px">
+  <h2>Upload Foto Galeri</h2>
+  <p>Tambahkan dokumentasi Panggung Gembira 620.</p>
 
+  <form id="uploadForm">
+    <input
+      id="photoTitle"
+      type="text"
+      placeholder="Judul foto"
+      required
+    >
+
+    <input
+      id="photoCategory"
+      type="text"
+      placeholder="Kategori foto"
+      required
+    >
+
+    <input
+      id="photoDescription"
+      type="text"
+      placeholder="Deskripsi foto"
+    >
+
+    <input
+      id="photoFile"
+      type="file"
+      accept="image/*"
+      required
+    >
+
+    <button type="submit" id="uploadButton">
+      UPLOAD FOTO
+    </button>
+  </form>
+
+  <p id="uploadMessage"></p>
+</div>
  <div class="card">
   <h2 id="sectionTitle">Selamat Datang</h2>
   <p id="sectionInfo">Pilih menu untuk mengelola konten website.</p>
@@ -166,7 +204,76 @@ async function showData(table){
   list.appendChild(row);
  });
 }
+document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
+  const button = document.getElementById("uploadButton");
+  const status = document.getElementById("uploadMessage");
+  const file = document.getElementById("photoFile").files[0];
+
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    status.textContent = "Pilih file gambar terlebih dahulu.";
+    return;
+  }
+
+  if (file.size > 10 * 1024 * 1024) {
+    status.textContent = "Ukuran foto maksimal 10 MB.";
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = "Sedang mengunggah foto...";
+
+  try {
+    const { data: userData, error: userError } =
+      await db.auth.getUser();
+
+    if (userError || userData.user?.app_metadata?.role !== "admin") {
+      throw new Error("Akses Super Admin tidak ditemukan. Login kembali.");
+    }
+
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
+    const filePath = Date.now() + "-" + safeName;
+
+    const { error: storageError } = await db.storage
+      .from("pg-gallery")
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: false
+      });
+
+    if (storageError) throw storageError;
+
+    const { data: urlData } = db.storage
+      .from("pg-gallery")
+      .getPublicUrl(filePath);
+
+    const { error: insertError } = await db
+      .from("gallery_items")
+      .insert({
+        title: document.getElementById("photoTitle").value,
+        category: document.getElementById("photoCategory").value,
+        description: document.getElementById("photoDescription").value,
+        image_url: urlData.publicUrl,
+        is_published: true
+      });
+
+    if (insertError) throw insertError;
+
+    status.textContent = "Foto berhasil diunggah!";
+    document.getElementById("uploadForm").reset();
+
+    await loadStats();
+    await showData("gallery_items");
+
+  } catch (error) {
+    status.textContent = "Gagal: " + error.message;
+  } finally {
+    button.disabled = false;
+  }
+});
 async function logout(){
  await db.auth.signOut();
  location.reload();
