@@ -4,293 +4,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PG 620 | Glassy Luxury Admin</title>
+<title>PG 620 | Super Admin</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --gold:#d8b66e;
-  --gold-light:#f1dca8;
-  --bg:#080a0e;
-  --glass:rgba(255,255,255,.045);
-  --line:rgba(255,255,255,.10);
-  --muted:#8d929b;
-}
+:root{--gold:#d8b66e;--light:#f1dca8;--bg:#080a0e;--glass:rgba(255,255,255,.045);--line:rgba(255,255,255,.1);--muted:#9297a1}
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  min-height:100vh;
-  background:
-    radial-gradient(ellipse at 75% 5%,rgba(177,135,58,.12),transparent 35%),
-    radial-gradient(ellipse at 10% 90%,rgba(84,100,130,.10),transparent 40%),
-    var(--bg);
-  color:#f3f0e9;
-  font-family:'DM Sans',sans-serif;
-}
-button,input{font:inherit}
-button{cursor:pointer}
-#login{
-  width:min(420px,calc(100% - 36px));
-  margin:12vh auto;
-  padding:38px;
-  border:1px solid rgba(216,182,110,.25);
-  border-radius:25px 12px 25px 12px;
-  background:rgba(255,255,255,.045);
-  backdrop-filter:blur(22px);
-  box-shadow:0 25px 80px #0008;
-}
-.brand{
-  color:var(--gold);
-  font-family:'Playfair Display',serif;
-  font-size:30px;
-  letter-spacing:3px;
-}
-.eyebrow{
-  color:var(--muted);
-  font-size:10px;
-  letter-spacing:3px;
-  margin-top:6px;
-}
+body{min-height:100vh;background:radial-gradient(ellipse at 75% 5%,rgba(177,135,58,.13),transparent 35%),radial-gradient(ellipse at 10% 90%,rgba(84,100,130,.1),transparent 40%),var(--bg);color:#f3f0e9;font-family:'DM Sans',sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
 h1,h2,h3{font-family:'Playfair Display',serif;font-weight:500}
-h1{font-size:34px}
-h2{font-size:23px}
 p{color:#a5a8af;line-height:1.7}
-.field{
-  width:100%;
-  background:rgba(0,0,0,.24);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:14px 16px;
-  color:white;
-  margin:10px 0;
-  outline:none;
-}
+.gold{color:var(--gold)}
+#login{width:min(420px,calc(100% - 36px));margin:12vh auto;padding:38px;border:1px solid rgba(216,182,110,.25);border-radius:25px 12px;background:var(--glass);backdrop-filter:blur(22px);box-shadow:0 25px 80px #0008}
+.brand{color:var(--gold);font-family:'Playfair Display',serif;font-size:30px;letter-spacing:3px}
+.eyebrow{color:var(--muted);font-size:10px;letter-spacing:3px;margin-top:6px}
+.field{width:100%;background:rgba(0,0,0,.24);border:1px solid var(--line);border-radius:12px;padding:13px 15px;color:white;margin:8px 0;outline:none}
 .field:focus{border-color:var(--gold)}
-.gold-btn{
-  border:1px solid rgba(216,182,110,.5);
-  background:linear-gradient(120deg,#b78c42,#ebd39a);
-  color:#17130c;
-  border-radius:10px;
-  padding:12px 20px;
-  font-weight:700;
-  transition:.25s;
-}
+.gold-btn{border:1px solid rgba(216,182,110,.5);background:linear-gradient(120deg,#b78c42,#ebd39a);color:#17130c;border-radius:10px;padding:12px 19px;font-weight:700;transition:.25s}
 .gold-btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
-#message{color:var(--gold);font-size:13px;margin-top:12px}
+.gold-btn:disabled{opacity:.5;cursor:wait;transform:none}
+#message,.status{color:var(--gold);font-size:13px;margin-top:12px}
 #app{display:none;min-height:100vh}
 .layout{display:flex;min-height:100vh;padding:18px;gap:18px}
-.sidebar{
-  width:245px;
-  flex-shrink:0;
-  padding:27px 18px;
-  border:1px solid var(--line);
-  border-radius:25px 12px 25px 12px;
-  background:rgba(255,255,255,.035);
-  backdrop-filter:blur(25px);
-  display:flex;
-  flex-direction:column;
-  min-height:calc(100vh - 36px);
-  position:sticky;
-  top:18px;
-}
-.side-brand{padding:4px 12px 30px}
+.sidebar{width:235px;flex-shrink:0;padding:25px 16px;border:1px solid var(--line);border-radius:25px 12px;background:rgba(255,255,255,.035);backdrop-filter:blur(25px);display:flex;flex-direction:column;min-height:calc(100vh - 36px);position:sticky;top:18px}
+.side-brand{padding:4px 12px 25px}
 .side-brand .brand{font-size:27px}
-.side-label{
-  color:#696e78;
-  font-size:10px;
-  letter-spacing:2px;
-  padding:12px;
-}
-.nav-btn{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  width:100%;
-  background:transparent;
-  color:#aeb1b8;
-  border:1px solid transparent;
-  border-radius:11px;
-  padding:13px 14px;
-  margin:3px 0;
-  text-align:left;
-  transition:.25s;
-}
-.nav-btn:hover,.nav-btn.active{
-  color:var(--gold-light);
-  background:rgba(216,182,110,.09);
-  border-color:rgba(216,182,110,.17);
-}
+.side-label{color:#696e78;font-size:10px;letter-spacing:2px;padding:12px}
+.nav-btn{display:flex;align-items:center;gap:12px;width:100%;background:transparent;color:#aeb1b8;border:1px solid transparent;border-radius:11px;padding:12px;margin:3px 0;text-align:left;transition:.25s}
+.nav-btn:hover,.nav-btn.active{color:var(--light);background:rgba(216,182,110,.09);border-color:rgba(216,182,110,.17)}
 .nav-icon{font-size:17px;width:22px;text-align:center}
-.side-bottom{margin-top:auto;padding-top:30px}
-.admin-tag{
-  padding:13px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  margin-bottom:15px;
-  font-size:12px;
-  color:#aeb1b8;
-}
-.admin-tag strong{color:var(--gold-light);display:block;margin-bottom:5px}
-.logout{
-  width:100%;
-  padding:12px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--line);
-  color:#c4a36a;
-  border-radius:10px;
-}
+.side-bottom{margin-top:auto;padding-top:25px}
+.admin-tag{padding:13px;border:1px solid var(--line);border-radius:12px;margin-bottom:13px;font-size:12px;color:#aeb1b8;overflow-wrap:anywhere}
+.admin-tag strong{color:var(--light);display:block;margin-bottom:5px}
+.logout{width:100%;padding:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:#c4a36a;border-radius:10px}
 .main{flex:1;min-width:0;padding:15px 22px 35px}
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  padding:10px 0 28px;
-  border-bottom:1px solid var(--line);
-}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:10px 0 25px;border-bottom:1px solid var(--line)}
 .top-right{color:var(--muted);font-size:12px}
-.hero{padding:38px 0 25px}
-.hero h1{margin:8px 0 10px}
-.gold-text{color:var(--gold)}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:20px;
-  margin:20px 0 42px;
-}
-.stat{
-  position:relative;
-  padding:16px 12px 18px;
-  border-bottom:1px solid rgba(216,182,110,.35);
-  transition:.3s;
-}
-.stat:hover{transform:translateY(-4px)}
+.hero{padding:35px 0 23px}
+.hero h1{font-size:34px;margin:8px 0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin:18px 0 38px}
+.stat{padding:16px 12px;border-bottom:1px solid rgba(216,182,110,.35)}
 .stat small{color:var(--muted);letter-spacing:1px}
-.stat h2{font-size:42px;color:var(--gold-light);margin:10px 0 3px}
+.stat h2{font-size:40px;color:var(--light);margin:10px 0 3px}
 .stat p{font-size:11px}
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  margin:25px 0;
-}
-.glass-panel{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.035);
-  backdrop-filter:blur(22px);
-  border-radius:23px 12px 23px 12px;
-  padding:25px;
-  box-shadow:0 18px 55px rgba(0,0,0,.12);
-}
-.upload-zone{
-  border:1px dashed rgba(216,182,110,.48);
-  border-radius:20px 10px 20px 10px;
-  min-height:190px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:25px;
-  text-align:center;
-  background:rgba(216,182,110,.025);
-  cursor:pointer;
-  transition:.25s;
-}
-.upload-zone:hover,.upload-zone.drag{
-  background:rgba(216,182,110,.09);
-  border-color:var(--gold-light);
-}
-.upload-symbol{font-size:34px;color:var(--gold)}
-.upload-zone strong{color:var(--gold-light)}
-.upload-zone p{font-size:12px}
-#photoFile{display:none}
-#preview{
-  display:none;
-  width:100%;
-  max-height:280px;
-  object-fit:contain;
-  border-radius:12px;
-  margin-top:15px;
-  background:#080a0e;
-}
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:18px;
-}
+.glass-panel{border:1px solid var(--line);background:rgba(255,255,255,.035);backdrop-filter:blur(22px);border-radius:23px 12px;padding:23px;box-shadow:0 18px 55px #0002}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:24px 0}
+.form-label{display:block;font-size:11px;color:var(--muted);margin:8px 0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-grid .full{grid-column:1/-1}
-.form-label{
-  display:block;
-  font-size:11px;
-  color:var(--muted);
-  margin:7px 0;
-}
-.content-list{margin-top:20px}
-.content-row{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:13px 0;
-  border-bottom:1px solid var(--line);
-}
-.content-row img{
-  width:65px;height:55px;
-  object-fit:cover;
-  border-radius:9px;
-}
-.content-row strong{font-size:13px;font-weight:500}
-.content-row small{display:block;color:var(--muted);margin-top:5px}
-.status{color:var(--gold);font-size:12px;margin-top:14px}
+textarea.field{min-height:100px;resize:vertical}
+.content-list{margin-top:18px}
+.content-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.content-row:last-child{border-bottom:0}
+.content-row img{width:75px;height:60px;object-fit:cover;border-radius:10px;background:#111}
+.content-info{flex:1;min-width:0}
+.content-info strong{font-size:13px;font-weight:600;display:block;overflow-wrap:anywhere}
+.content-info small{display:block;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}
+.row-actions{display:flex;gap:7px;flex-wrap:wrap}
+.small-btn{padding:8px 11px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#ddd;border-radius:8px;font-size:11px}
+.small-btn:hover{border-color:var(--gold);color:var(--light)}
+.danger{color:#e99a91}
+.upload-zone{border:1px dashed rgba(216,182,110,.48);border-radius:20px 10px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:22px;text-align:center;background:rgba(216,182,110,.025);cursor:pointer}
+.upload-zone:hover{background:rgba(216,182,110,.09)}
+.upload-symbol{font-size:32px;color:var(--gold)}
+#photoFile{display:none}
+#preview{display:none;width:100%;max-height:250px;object-fit:contain;border-radius:12px;margin-top:14px}
+.checkline{display:flex;align-items:center;gap:10px;color:#c5c5c5;font-size:13px;margin:15px 0}
+.checkline input{accent-color:#d8b66e;width:16px;height:16px}
 .hidden{display:none!important}
-.mobile-menu{display:none}
+.empty{padding:25px 5px;color:var(--muted);font-size:13px}
 footer{color:#626772;font-size:11px;text-align:center;padding:30px}
-@media(max-width:850px){
-  .layout{padding:10px;gap:10px}
-  .sidebar{width:190px;padding:20px 12px}
-  .main{padding:12px}
-  .stats{grid-template-columns:repeat(2,1fr);gap:10px}
-}
-@media(max-width:600px){
-  .layout{display:block;padding:10px}
-  .sidebar{
-    position:relative;top:auto;
-    width:100%;min-height:auto;
-    padding:15px;
-    margin-bottom:18px;
-  }
-  .side-brand{padding:0 8px 12px}
-  .side-brand .brand{font-size:23px}
-  .side-label,.side-bottom{display:none}
-  .sidebar nav{
-    display:flex;overflow-x:auto;gap:5px;
-  }
-  .nav-btn{width:auto;white-space:nowrap;padding:10px;font-size:11px}
-  .nav-icon{width:auto}
-  .main{padding:10px 4px}
-  .hero{padding:25px 0}
-  .hero h1{font-size:28px}
-  .stat h2{font-size:33px}
-  .glass-panel{padding:17px}
-  .form-grid{grid-template-columns:1fr}
-  .form-grid .full{grid-column:auto}
-  .topbar{padding-bottom:18px}
-  .top-right{font-size:10px}
-}
+@media(max-width:850px){.sidebar{width:190px}.stats{grid-template-columns:repeat(2,1fr);gap:10px}.main{padding:12px}}
+@media(max-width:600px){.layout{display:block;padding:10px}.sidebar{position:relative;top:auto;width:100%;min-height:auto;padding:14px;margin-bottom:15px}.side-brand{padding:0 8px 12px}.side-brand .brand{font-size:23px}.side-label,.side-bottom{display:none}.sidebar nav{display:flex;overflow-x:auto;gap:5px}.nav-btn{width:auto;white-space:nowrap;padding:10px;font-size:11px}.nav-icon{width:auto}.main{padding:10px 4px}.hero{padding:24px 0}.hero h1{font-size:28px}.stat h2{font-size:32px}.glass-panel{padding:16px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.topbar{padding-bottom:18px}.top-right{font-size:10px}.content-row{align-items:flex-start;flex-wrap:wrap}.row-actions{width:100%;padding-left:88px}}
 </style>
 </head>
-
 <body>
 
 <section id="login">
   <div class="brand">PG 620</div>
   <div class="eyebrow">GLASSY LUXURY MANAGEMENT</div>
-  <div style="margin-top:38px">
-    <h1>Welcome <span class="gold-text">Back.</span></h1>
-    <p style="margin:10px 0 25px">Masuk ke ruang kendali Panggung Gembira 620.</p>
+  <div style="margin-top:35px">
+    <h1>Welcome <span class="gold">Back.</span></h1>
+    <p style="margin:10px 0 22px">Masuk ke ruang kendali Panggung Gembira 620.</p>
   </div>
   <form id="loginForm">
     <input class="field" id="email" type="email" placeholder="Email admin" required>
@@ -302,38 +97,26 @@ footer{color:#626772;font-size:11px;text-align:center;padding:30px}
 
 <div id="app">
 <div class="layout">
-
 <aside class="sidebar">
   <div class="side-brand">
     <div class="brand">PG 620</div>
     <div class="eyebrow">CONTROL CENTER</div>
   </div>
-
   <div class="side-label">MAIN MENU</div>
-  <nav>
-    <button class="nav-btn active" data-page="dashboard" onclick="navigate('dashboard',this)">
-      <span class="nav-icon">⌂</span> Dashboard
-    </button>
-    <button class="nav-btn" data-page="gallery" onclick="navigate('gallery',this)">
-      <span class="nav-icon">▧</span> Galeri
-    </button>
-    <button class="nav-btn" data-page="news" onclick="navigate('news',this)">
-      <span class="nav-icon">◈</span> Berita
-    </button>
-    <button class="nav-btn" data-page="pages" onclick="navigate('pages',this)">
-      <span class="nav-icon">▤</span> Halaman
-    </button>
-    <button class="nav-btn" data-page="videos" onclick="navigate('videos',this)">
-      <span class="nav-icon">▷</span> Video
-    </button>
+  <nav id="navigation">
+    <button class="nav-btn active" data-page="dashboard">⌂ &nbsp; Dashboard</button>
+    <button class="nav-btn" data-page="home">⌂ &nbsp; Home</button>
+    <button class="nav-btn" data-page="about">◈ &nbsp; Tentang</button>
+    <button class="nav-btn" data-page="gallery">▧ &nbsp; Gallery</button>
+    <button class="nav-btn" data-page="video">▷ &nbsp; Video</button>
+    <button class="nav-btn" data-page="committee">♙ &nbsp; Committee</button>
+    <button class="nav-btn" data-page="timing">◷ &nbsp; Timing</button>
+    <button class="nav-btn" data-page="countdown">◴ &nbsp; Countdown</button>
+    <button class="nav-btn" data-page="contact">✉ &nbsp; Contact</button>
   </nav>
-
   <div class="side-bottom">
-    <div class="admin-tag">
-      <strong>✦ SUPER ADMIN</strong>
-      PG 620 Management
-    </div>
-    <button class="logout" onclick="logout()">↗ Logout</button>
+    <div class="admin-tag"><strong>✦ SUPER ADMIN</strong><span id="adminEmail">PG 620 Management</span></div>
+    <button class="logout" id="logoutBtn">↗ Logout</button>
   </div>
 </aside>
 
@@ -348,110 +131,88 @@ footer{color:#626772;font-size:11px;text-align:center;padding:30px}
 
   <section id="dashboardPage">
     <div class="hero">
-      <div class="eyebrow">OVERVIEW / 2026</div>
-      <h1>Good day, <span class="gold-text">Admin.</span></h1>
+      <div class="eyebrow">OVERVIEW / CONTROL CENTER</div>
+      <h1>Good day, <span class="gold">Admin.</span></h1>
       <p>Kelola seluruh konten Panggung Gembira 620 dari satu tempat.</p>
     </div>
-
     <div class="stats">
-      <div class="stat">
-        <small>01 / GALERI</small>
-        <h2 id="galleryCount">—</h2>
-        <p>Total foto tersimpan</p>
-      </div>
-      <div class="stat">
-        <small>02 / BERITA</small>
-        <h2 id="newsCount">—</h2>
-        <p>Total berita tersimpan</p>
-      </div>
-      <div class="stat">
-        <small>03 / HALAMAN</small>
-        <h2 id="pageCount">—</h2>
-        <p>Total halaman website</p>
-      </div>
-      <div class="stat">
-        <small>04 / VIDEO</small>
-        <h2 id="videoCount">—</h2>
-        <p>Total video tersimpan</p>
-      </div>
-    </div>
-
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">QUICK ACCESS</div>
-        <h2 style="margin-top:7px">Workspace</h2>
-      </div>
+      <div class="stat"><small>01 / GALLERY</small><h2 id="galleryCount">—</h2><p>Total foto tersimpan</p></div>
+      <div class="stat"><small>02 / VIDEO</small><h2 id="videoCount">—</h2><p>Konten video</p></div>
+      <div class="stat"><small>03 / COMMITTEE</small><h2 id="committeeCount">—</h2><p>Data panitia</p></div>
+      <div class="stat"><small>04 / CONTENT</small><h2 id="contentCount">—</h2><p>Konten website</p></div>
     </div>
     <div class="glass-panel">
-      <h2>Manage your <span class="gold-text">content.</span></h2>
-      <p style="margin-top:10px">Pilih menu di sebelah kiri untuk mengelola galeri, berita, halaman, dan video.</p>
-      <button class="gold-btn" style="margin-top:20px" onclick="navigate('gallery')">OPEN GALLERY ↗</button>
+      <div class="eyebrow">YOUR WORKSPACE</div>
+      <h2 style="margin-top:8px">Manage your <span class="gold">website.</span></h2>
+      <p style="margin-top:10px">Semua pengaturan konten PG 620 berada dalam satu ruang kendali.</p>
+      <button class="gold-btn" style="margin-top:20px" data-goto="home">OPEN HOME EDITOR ↗</button>
     </div>
+  </section>
+
+  <section id="editorPage" class="hidden">
+    <div class="hero">
+      <div class="eyebrow" id="editorEyebrow">CONTENT MANAGEMENT</div>
+      <h1 id="editorTitle">Home <span class="gold">Studio.</span></h1>
+      <p id="editorDescription">Kelola konten website.</p>
+    </div>
+    <div class="glass-panel">
+      <div class="section-head">
+        <div><div class="eyebrow">CONTENT EDITOR</div><h2 style="margin-top:7px">Add / Edit <span class="gold">Content.</span></h2></div>
+      </div>
+      <form id="contentForm">
+        <input type="hidden" id="recordId">
+        <div class="form-grid">
+          <div>
+            <label class="form-label">TITLE / NAMA</label>
+            <input class="field" id="itemTitle" required placeholder="Judul konten">
+          </div>
+          <div>
+            <label class="form-label">SLUG / IDENTITAS</label>
+            <input class="field" id="itemSlug" required placeholder="judul-konten">
+          </div>
+          <div class="full" id="dynamicFields"></div>
+        </div>
+        <label class="checkline"><input type="checkbox" id="published"> Tampilkan konten di website publik</label>
+        <button class="gold-btn" id="saveContentBtn" type="submit">SAVE CONTENT ↗</button>
+        <button class="small-btn" type="button" id="cancelEditBtn">BATAL / RESET</button>
+        <div class="status" id="formMessage"></div>
+      </form>
+    </div>
+    <div class="section-head">
+      <div><div class="eyebrow">COLLECTION</div><h2 style="margin-top:7px">Saved <span class="gold">Content.</span></h2></div>
+    </div>
+    <div class="glass-panel content-list" id="contentList"><p class="empty">Memuat konten...</p></div>
   </section>
 
   <section id="galleryPage" class="hidden">
     <div class="hero">
       <div class="eyebrow">MEDIA MANAGEMENT / 01</div>
-      <h1>Gallery <span class="gold-text">Studio.</span></h1>
+      <h1>Gallery <span class="gold">Studio.</span></h1>
       <p>Arsip visual Panggung Gembira 620.</p>
     </div>
-
     <div class="glass-panel">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">NEW MEDIA</div>
-          <h2 style="margin-top:7px">Upload <span class="gold-text">Photography.</span></h2>
-        </div>
-      </div>
-
+      <div class="eyebrow">NEW MEDIA</div>
+      <h2 style="margin:8px 0 18px">Upload <span class="gold">Photography.</span></h2>
       <form id="uploadForm">
         <label class="upload-zone" id="dropZone" for="photoFile">
           <div class="upload-symbol">↥</div>
-          <strong>Drop your image here</strong>
-          <p>atau klik untuk memilih foto dari laptop</p>
+          <strong id="fileLabel">Drop your image here</strong>
+          <p>Klik atau seret foto dari laptop</p>
           <p>JPG, PNG, WEBP · Maksimal 10 MB</p>
         </label>
         <input id="photoFile" type="file" accept="image/jpeg,image/png,image/webp">
-
         <img id="preview" alt="Preview foto">
-
-        <div class="form-grid">
-          <div>
-            <label class="form-label">PHOTO TITLE</label>
-            <input class="field" id="photoTitle" placeholder="Judul foto" required>
-          </div>
-          <div>
-            <label class="form-label">CATEGORY</label>
-            <input class="field" id="photoCategory" placeholder="Contoh: Dokumentasi" required>
-          </div>
-          <div class="full">
-            <label class="form-label">DESCRIPTION</label>
-            <input class="field" id="photoDescription" placeholder="Keterangan foto (opsional)">
-          </div>
+        <div class="form-grid" style="margin-top:15px">
+          <div><label class="form-label">PHOTO TITLE</label><input class="field" id="photoTitle" required placeholder="Judul foto"></div>
+          <div><label class="form-label">CATEGORY</label><input class="field" id="photoCategory" required placeholder="Dokumentasi"></div>
+          <div class="full"><label class="form-label">DESCRIPTION</label><input class="field" id="photoDescription" placeholder="Keterangan foto"></div>
         </div>
         <button class="gold-btn" id="uploadButton" type="submit" style="margin-top:12px">UPLOAD TO GALLERY ↗</button>
         <div class="status" id="uploadMessage"></div>
       </form>
     </div>
-
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">COLLECTION</div>
-        <h2 style="margin-top:7px">Stored <span class="gold-text">Photos.</span></h2>
-      </div>
-    </div>
-    <div class="glass-panel content-list" id="galleryList">
-      <p>Pilih menu Galeri untuk memuat foto.</p>
-    </div>
-  </section>
-
-  <section id="dataPage" class="hidden">
-    <div class="hero">
-      <div class="eyebrow">CONTENT MANAGEMENT</div>
-      <h1 id="dataTitle">Content.</h1>
-      <p>Daftar konten yang tersimpan di sistem PG 620.</p>
-    </div>
-    <div class="glass-panel content-list" id="dataList"></div>
+    <div class="section-head"><div><div class="eyebrow">COLLECTION</div><h2 style="margin-top:7px">Stored <span class="gold">Photos.</span></h2></div></div>
+    <div class="glass-panel content-list" id="galleryList"><p class="empty">Memuat foto...</p></div>
   </section>
 
   <footer>© 2026 PG 620 · GLASSY LUXURY MANAGEMENT</footer>
@@ -460,227 +221,257 @@ footer{color:#626772;font-size:11px;text-align:center;padding:30px}
 </div>
 
 <script>
-const SUPABASE_URL = "https://jvgpkcufjkthxusjzrof.supabase.co";
-const SUPABASE_KEY = "sb_publishable_RnrmYSymRa9VPi2U2eiXoQ_uITp88rI";
-const db = supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const SUPABASE_URL="https://jvgpkcufjkthxusjzrof.supabase.co";
+const SUPABASE_KEY="sb_publishable_RnrmYSymRa9VPi2U2eiXoQ_uITp88rI";
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
 
-const $ = id => document.getElementById(id);
-const tables = {
-  gallery:"gallery_items",
-  news:"news_posts",
-  pages:"site_pages",
-  videos:"videos"
+const sections={
+ home:{title:"Home",desc:"Kelola tampilan utama website.",fields:[
+  ["eyebrow","Eyebrow / Label","text"],["headline","Headline utama","text"],["description","Deskripsi beranda","textarea"],["button_text","Teks tombol","text"],["button_link","Link tombol","url"],["image_url","URL gambar banner","url"]
+ ]},
+ about:{title:"Tentang",desc:"Kelola profil dan informasi Panggung Gembira.",fields:[
+  ["subtitle","Subjudul","text"],["description","Deskripsi tentang acara","textarea"],["image_url","URL gambar","url"]
+ ]},
+ video:{title:"Video",desc:"Kelola trailer, teaser, dan dokumentasi video.",fields:[
+  ["description","Deskripsi video","textarea"],["video_url","Link video (YouTube)","url"],["thumbnail_url","URL thumbnail","url"]
+ ]},
+ committee:{title:"Committee",desc:"Kelola data anggota dan struktur kepanitiaan.",fields:[
+  ["role","Jabatan","text"],["division","Divisi","text"],["bio","Keterangan anggota","textarea"],["photo_url","URL foto anggota","url"]
+ ]},
+ timing:{title:"Timing",desc:"Kelola jadwal dan rangkaian acara.",fields:[
+  ["date","Tanggal acara","date"],["time","Waktu acara","text"],["location","Lokasi","text"],["description","Keterangan jadwal","textarea"]
+ ]},
+ countdown:{title:"Countdown",desc:"Atur target waktu hitung mundur.",fields:[
+  ["target_datetime","Tanggal dan waktu target","datetime-local"],["description","Keterangan countdown","textarea"]
+ ]},
+ contact:{title:"Contact",desc:"Kelola informasi kontak dan media sosial.",fields:[
+  ["whatsapp","Nomor WhatsApp","text"],["instagram","Instagram","text"],["email","Email","email"],["address","Alamat","textarea"],["maps_url","Link Google Maps","url"]
+ ]}
 };
-
-function showMessage(text){
-  $("message").textContent=text;
-}
-
-async function verifyAdmin(){
-  const {data,error}=await db.auth.getUser();
-  if(error || data.user?.app_metadata?.role!=="admin"){
-    await db.auth.signOut();
-    $("app").style.display="none";
-    $("login").style.display="block";
-    showMessage("Sesi admin tidak valid. Silakan login kembali.");
-    return false;
-  }
-  return true;
-}
-
-async function openDashboard(){
-  if(!(await verifyAdmin()))return;
-  $("login").style.display="none";
-  $("app").style.display="block";
-  await loadStats();
-}
-
-$("loginForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  showMessage("Memeriksa akun...");
-  const {data,error}=await db.auth.signInWithPassword({
-    email:$("email").value.trim(),
-    password:$("password").value
-  });
-  if(error){showMessage(error.message);return;}
-  if(data.user?.app_metadata?.role!=="admin"){
-    await db.auth.signOut();
-    showMessage("Akun ini belum memiliki akses Super Admin.");
-    return;
-  }
-  await openDashboard();
-});
-
-async function loadStats(){
-  const names=["gallery","news","pages","videos"];
-  const ids=["galleryCount","newsCount","pageCount","videoCount"];
-  for(let i=0;i<names.length;i++){
-    const {count,error}=await db.from(tables[names[i]])
-      .select("*",{count:"exact",head:true});
-    $(ids[i]).textContent=error?"—":count;
-  }
-}
-
-function navigate(page,button){
-  ["dashboardPage","galleryPage","dataPage"].forEach(id=>$(id).classList.add("hidden"));
-  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
-  if(button)button.classList.add("active");
-
-  if(page==="dashboard"){
-    $("dashboardPage").classList.remove("hidden");
-  }else if(page==="gallery"){
-    $("galleryPage").classList.remove("hidden");
-    loadGallery();
-  }else{
-    $("dataPage").classList.remove("hidden");
-    const title={news:"News.",pages:"Pages.",videos:"Videos."};
-    $("dataTitle").textContent=title[page]||"Content.";
-    showData(tables[page]);
-  }
-}
-window.navigate=navigate;
-
-async function showData(table){
-  const list=$("dataList");
-  list.textContent="Memuat data...";
-  const {data,error}=await db.from(table).select("*").limit(50);
-  if(error){list.textContent=error.message;return;}
-  list.innerHTML="";
-  if(!data?.length){list.textContent="Belum ada konten.";return;}
-  data.forEach(item=>{
-    const row=document.createElement("div");
-    row.className="content-row";
-    const title=document.createElement("strong");
-    title.textContent=item.title||item.slug||item.id;
-    row.appendChild(title);
-    list.appendChild(row);
-  });
-}
-
-async function loadGallery(){
-  const list=$("galleryList");
-  list.textContent="Memuat foto...";
-  const {data,error}=await db.from("gallery_items")
-    .select("*").order("created_at",{ascending:false}).limit(50);
-  if(error){list.textContent=error.message;return;}
-  list.innerHTML="";
-  if(!data?.length){list.textContent="Belum ada foto tersimpan.";return;}
-  data.forEach(item=>{
-    const row=document.createElement("div");
-    row.className="content-row";
-    const img=document.createElement("img");
-    img.src=item.image_url;
-    img.alt=item.title||"Foto galeri";
-    const info=document.createElement("div");
-    const title=document.createElement("strong");
-    title.textContent=item.title||"Tanpa judul";
-    const small=document.createElement("small");
-    small.textContent=item.category||"Galeri";
-    info.append(title,small);
-    row.append(img,info);
-    list.appendChild(row);
-  });
-}
-
-const fileInput=$("photoFile");
-const dropZone=$("dropZone");
+let currentSection="home";
 let selectedFile=null;
 
+function showMessage(text){$("message").textContent=text}
+async function verifyAdmin(){
+ const {data,error}=await db.auth.getUser();
+ if(error||data.user?.app_metadata?.role!=="admin"){
+  await db.auth.signOut();$("app").style.display="none";$("login").style.display="block";
+  showMessage("Sesi admin tidak valid. Silakan login kembali.");return false;
+ }
+ $("adminEmail").textContent=data.user.email||"PG 620 Management";
+ return true;
+}
+async function openDashboard(){
+ if(!(await verifyAdmin()))return;
+ $("login").style.display="none";$("app").style.display="block";
+ await loadStats();
+}
+$("loginForm").addEventListener("submit",async e=>{
+ e.preventDefault();showMessage("Memeriksa akun...");
+ const {data,error}=await db.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
+ if(error){showMessage(error.message);return}
+ if(data.user?.app_metadata?.role!=="admin"){await db.auth.signOut();showMessage("Akun ini belum memiliki akses Super Admin.");return}
+ await openDashboard();
+});
+
+async function countRows(table){
+ const {count,error}=await db.from(table).select("*",{count:"exact",head:true});
+ return error?"—":count;
+}
+async function loadStats(){
+ $("galleryCount").textContent=await countRows("gallery_items");
+ $("videoCount").textContent=await countRows("site_content").then(async n=>{
+  const {count,error}=await db.from("site_content").select("*",{count:"exact",head:true}).eq("section","video");
+  return error?"—":count;
+ });
+ const {count:committee,error}=await db.from("site_content").select("*",{count:"exact",head:true}).eq("section","committee");
+ $("committeeCount").textContent=error?"—":committee;
+ const {count,error:contentError}=await db.from("site_content").select("*",{count:"exact",head:true});
+ $("contentCount").textContent=contentError?"—":count;
+}
+
+function navigate(page){
+ document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ $("dashboardPage").classList.add("hidden");
+ $("editorPage").classList.add("hidden");
+ $("galleryPage").classList.add("hidden");
+ if(page==="dashboard"){$("dashboardPage").classList.remove("hidden");loadStats();return}
+ if(page==="gallery"){$("galleryPage").classList.remove("hidden");loadGallery();return}
+ if(sections[page]){
+  currentSection=page;
+  $("editorPage").classList.remove("hidden");
+  const s=sections[page];
+  $("editorEyebrow").textContent="CONTENT MANAGEMENT / "+page.toUpperCase();
+  $("editorTitle").innerHTML=s.title+' <span class="gold">Studio.</span>';
+  $("editorDescription").textContent=s.desc;
+  buildFields();resetForm();loadContent();
+ }
+}
+document.querySelectorAll(".nav-btn").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.page)));
+document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.goto)));
+
+function buildFields(){
+ const holder=$("dynamicFields");holder.innerHTML="";
+ sections[currentSection].fields.forEach(([key,label,type])=>{
+  const wrap=document.createElement("div");
+  wrap.className="full";
+  const lab=document.createElement("label");lab.className="form-label";lab.textContent=label;
+  let input;
+  if(type==="textarea"){input=document.createElement("textarea");input.rows=4}
+  else{input=document.createElement("input");input.type=type}
+  input.className="field";input.id="field_"+key;input.dataset.key=key;input.placeholder=label;
+  wrap.append(lab,input);holder.append(wrap);
+ });
+}
+function resetForm(){
+ $("contentForm").reset();$("recordId").value="";$("formMessage").textContent="";
+ $("saveContentBtn").textContent="SAVE CONTENT ↗";
+}
+$("cancelEditBtn").addEventListener("click",resetForm);
+$("itemTitle").addEventListener("input",()=>{
+ if(!$("recordId").value)$("itemSlug").value=$("itemTitle").value.toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+});
+
+$("contentForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!(await verifyAdmin()))return;
+ const content={};
+ sections[currentSection].fields.forEach(([key])=>content[key]=$("field_"+key).value.trim());
+ const record={
+  section:currentSection,
+  title:$("itemTitle").value.trim(),
+  slug:$("itemSlug").value.trim(),
+  content,
+  is_published:$("published").checked,
+  updated_at:new Date().toISOString()
+ };
+ const id=$("recordId").value;
+ const btn=$("saveContentBtn");btn.disabled=true;
+ $("formMessage").textContent="Menyimpan konten...";
+ try{
+  let result;
+  if(id)result=await db.from("site_content").update(record).eq("id",id);
+  else result=await db.from("site_content").insert(record);
+  if(result.error)throw result.error;
+  $("formMessage").textContent="✓ Konten berhasil disimpan.";
+  resetForm();await loadContent();await loadStats();
+ }catch(err){$("formMessage").textContent="Gagal: "+err.message}
+ finally{btn.disabled=false}
+});
+
+async function loadContent(){
+ const list=$("contentList");list.textContent="Memuat konten...";
+ const {data,error}=await db.from("site_content").select("*").eq("section",currentSection).order("created_at",{ascending:false});
+ if(error){list.textContent="Gagal memuat: "+error.message;return}
+ list.innerHTML="";
+ if(!data?.length){list.innerHTML='<p class="empty">Belum ada konten. Tambahkan konten pertama kamu.</p>';return}
+ data.forEach(item=>{
+  const row=document.createElement("div");row.className="content-row";
+  const info=document.createElement("div");info.className="content-info";
+  const title=document.createElement("strong");title.textContent=item.title;
+  const small=document.createElement("small");small.textContent=item.slug+" · "+(item.is_published?"Dipublikasikan":"Draft");
+  info.append(title,small);
+  const actions=document.createElement("div");actions.className="row-actions";
+  const edit=document.createElement("button");edit.className="small-btn";edit.textContent="Edit";
+  edit.addEventListener("click",()=>editContent(item));
+  const del=document.createElement("button");del.className="small-btn danger";del.textContent="Hapus";
+  del.addEventListener("click",()=>deleteContent(item.id));
+  actions.append(edit,del);row.append(info,actions);list.append(row);
+ });
+}
+function editContent(item){
+ $("recordId").value=item.id;$("itemTitle").value=item.title||"";$("itemSlug").value=item.slug||"";
+ $("published").checked=!!item.is_published;
+ sections[currentSection].fields.forEach(([key])=>{
+  $("field_"+key).value=item.content?.[key]||"";
+ });
+ $("saveContentBtn").textContent="UPDATE CONTENT ↗";
+ $("formMessage").textContent="Sedang mengedit: "+item.title;
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+async function deleteContent(id){
+ if(!confirm("Hapus konten ini?"))return;
+ const {error}=await db.from("site_content").delete().eq("id",id);
+ if(error){alert("Gagal menghapus: "+error.message);return}
+ await loadContent();await loadStats();
+}
+
+function makeRow(title,subtitle,image,actions){
+ const row=document.createElement("div");row.className="content-row";
+ if(image){const img=document.createElement("img");img.src=image;img.alt=title;row.append(img)}
+ const info=document.createElement("div");info.className="content-info";
+ const strong=document.createElement("strong");strong.textContent=title;
+ const small=document.createElement("small");small.textContent=subtitle;
+ info.append(strong,small);row.append(info);
+ if(actions)row.append(actions);
+ return row;
+}
+async function loadGallery(){
+ const list=$("galleryList");list.textContent="Memuat foto...";
+ const {data,error}=await db.from("gallery_items").select("*").order("created_at",{ascending:false}).limit(100);
+ if(error){list.textContent=error.message;return}
+ list.innerHTML="";
+ if(!data?.length){list.innerHTML='<p class="empty">Belum ada foto tersimpan.</p>';return}
+ data.forEach(item=>{
+  const actions=document.createElement("div");actions.className="row-actions";
+  const del=document.createElement("button");del.className="small-btn danger";del.textContent="Hapus";
+  del.addEventListener("click",()=>deletePhoto(item));actions.append(del);
+  list.append(makeRow(item.title||"Tanpa judul",item.category||"Galeri",item.image_url,actions));
+ });
+}
+async function deletePhoto(item){
+ if(!confirm("Hapus foto ini dari galeri?"))return;
+ const {error}=await db.from("gallery_items").delete().eq("id",item.id);
+ if(error){alert("Gagal menghapus: "+error.message);return}
+ try{
+  const marker="/storage/v1/object/public/pg-gallery/";
+  const path=item.image_url?.split(marker)[1];
+  if(path)await db.storage.from("pg-gallery").remove([decodeURIComponent(path)]);
+ }catch(e){console.warn(e)}
+ await loadGallery();await loadStats();
+}
+
+const fileInput=$("photoFile"),dropZone=$("dropZone");
 function chooseFile(file){
-  if(!file)return;
-  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
-    $("uploadMessage").textContent="Gunakan JPG, PNG, atau WEBP.";
-    return;
-  }
-  if(file.size>10*1024*1024){
-    $("uploadMessage").textContent="Ukuran maksimal 10 MB.";
-    return;
-  }
-  selectedFile=file;
-  $("preview").src=URL.createObjectURL(file);
-  $("preview").style.display="block";
-  dropZone.querySelector("strong").textContent=file.name;
-  $("uploadMessage").textContent="Foto siap diunggah.";
+ if(!file)return;
+ if(!["image/jpeg","image/png","image/webp"].includes(file.type)){ $("uploadMessage").textContent="Gunakan JPG, PNG, atau WEBP.";return}
+ if(file.size>10*1024*1024){$("uploadMessage").textContent="Ukuran maksimal 10 MB.";return}
+ selectedFile=file;$("preview").src=URL.createObjectURL(file);$("preview").style.display="block";
+ $("fileLabel").textContent=file.name;$("uploadMessage").textContent="Foto siap diunggah.";
 }
 fileInput.addEventListener("change",()=>chooseFile(fileInput.files[0]));
-
-["dragenter","dragover"].forEach(event=>{
-  dropZone.addEventListener(event,e=>{
-    e.preventDefault();
-    dropZone.classList.add("drag");
-  });
-});
-["dragleave","drop"].forEach(event=>{
-  dropZone.addEventListener(event,e=>{
-    e.preventDefault();
-    dropZone.classList.remove("drag");
-  });
-});
-dropZone.addEventListener("drop",e=>{
-  chooseFile(e.dataTransfer.files[0]);
-});
+["dragenter","dragover"].forEach(ev=>dropZone.addEventListener(ev,e=>{e.preventDefault();dropZone.style.background="rgba(216,182,110,.1)"}));
+["dragleave","drop"].forEach(ev=>dropZone.addEventListener(ev,e=>{e.preventDefault();dropZone.style.background=""}));
+dropZone.addEventListener("drop",e=>chooseFile(e.dataTransfer.files[0]));
 
 $("uploadForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!(await verifyAdmin()))return;
-  if(!selectedFile){
-    $("uploadMessage").textContent="Pilih foto terlebih dahulu.";
-    return;
-  }
-
-  const button=$("uploadButton");
-  button.disabled=true;
-  $("uploadMessage").textContent="Mengunggah foto...";
-
-  let uploadedPath=null;
-  try{
-    const safeName=selectedFile.name.replace(/[^a-zA-Z0-9._-]/g,"-");
-    uploadedPath=Date.now()+"-"+safeName;
-
-    const {error:storageError}=await db.storage
-      .from("pg-gallery")
-      .upload(uploadedPath,selectedFile,{upsert:false});
-    if(storageError)throw storageError;
-
-    const {data:urlData}=db.storage.from("pg-gallery")
-      .getPublicUrl(uploadedPath);
-
-    const {error:insertError}=await db.from("gallery_items").insert({
-      title:$("photoTitle").value.trim(),
-      category:$("photoCategory").value.trim(),
-      description:$("photoDescription").value.trim(),
-      image_url:urlData.publicUrl,
-      is_published:true
-    });
-    if(insertError)throw insertError;
-
-    $("uploadMessage").textContent="✓ Foto berhasil disimpan!";
-    $("uploadForm").reset();
-    selectedFile=null;
-    $("preview").style.display="none";
-    $("preview").removeAttribute("src");
-    dropZone.querySelector("strong").textContent="Drop your image here";
-    await loadStats();
-    await loadGallery();
-  }catch(error){
-    $("uploadMessage").textContent="Gagal: "+error.message;
-    if(uploadedPath){
-      await db.storage.from("pg-gallery").remove([uploadedPath]);
-    }
-  }finally{
-    button.disabled=false;
-  }
+ e.preventDefault();if(!(await verifyAdmin()))return;
+ if(!selectedFile){$("uploadMessage").textContent="Pilih foto terlebih dahulu.";return}
+ const btn=$("uploadButton");btn.disabled=true;$("uploadMessage").textContent="Mengunggah foto...";
+ let uploadedPath=null;
+ try{
+  const safeName=selectedFile.name.replace(/[^a-zA-Z0-9._-]/g,"-");
+  uploadedPath=Date.now()+"-"+safeName;
+  const {error:storageError}=await db.storage.from("pg-gallery").upload(uploadedPath,selectedFile,{upsert:false});
+  if(storageError)throw storageError;
+  const {data:urlData}=db.storage.from("pg-gallery").getPublicUrl(uploadedPath);
+  const {error:insertError}=await db.from("gallery_items").insert({
+   title:$("photoTitle").value.trim(),category:$("photoCategory").value.trim(),
+   description:$("photoDescription").value.trim(),image_url:urlData.publicUrl,is_published:true
+  });
+  if(insertError)throw insertError;
+  $("uploadMessage").textContent="✓ Foto berhasil disimpan!";
+  $("uploadForm").reset();selectedFile=null;$("preview").style.display="none";
+  $("preview").removeAttribute("src");$("fileLabel").textContent="Drop your image here";
+  await loadGallery();await loadStats();
+ }catch(err){
+  $("uploadMessage").textContent="Gagal: "+err.message;
+  if(uploadedPath)await db.storage.from("pg-gallery").remove([uploadedPath]);
+ }finally{btn.disabled=false}
 });
 
-async function logout(){
-  await db.auth.signOut();
-  location.reload();
-}
-window.logout=logout;
-
-db.auth.getSession().then(async({data})=>{
-  if(data.session)await openDashboard();
-});
+$("logoutBtn").addEventListener("click",async()=>{await db.auth.signOut();location.reload()});
+db.auth.getSession().then(async({data})=>{if(data.session)await openDashboard()});
 </script>
 </body>
 </html>
