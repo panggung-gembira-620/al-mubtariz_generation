@@ -72,11 +72,11 @@ body {
     top: 15px;
     left: 5%;
     width: 90%;
-    padding: 16px 22px;
+    padding: 10px 22px;
     background: #ffffff0d;
     border: 1px solid #ffffff20;
     border-radius: 16px;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(20px);
     display: flex;
     justify-content: space-between;
@@ -198,7 +198,7 @@ body {
     min-width: 130px;
     padding: 17px 22px;
     border: 1px solid #d7b56d44;
-    border-radius: 12px;
+    border-radius: 30px;
     background: #ffffff08;
 }
 
@@ -253,7 +253,7 @@ body {
     min-width: 220px;
     padding: 13px 17px;
     border: 1px solid #d7b56d55;
-    border-radius: 8px;
+    border-radius: 30px;
     background: #ffffff0b;
     color: white;
     outline: none;
@@ -273,7 +273,7 @@ body {
     min-width: 180px;
     padding: 13px 15px;
     border: 1px solid #d7b56d55;
-    border-radius: 8px;
+    border-radius: 30px;
     background: #17111f;
     color: var(--gold-light);
     font-family: inherit;
@@ -286,7 +286,7 @@ body {
 .grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
+    gap: 30px;
     max-width: 1150px;
     margin: auto;
 }
@@ -299,7 +299,7 @@ body {
     text-align: center;
     background: linear-gradient(145deg, #ffffff12, #ffffff04);
     border: 1px solid #d7b56d44;
-    border-radius: 18px;
+    border-radius: 30px;
     backdrop-filter: blur(15px);
     transition: .35s;
     animation: fadeUp .7s ease both;
@@ -618,7 +618,7 @@ footer span {
         right: 12px;
         bottom: 12px;
         width: auto;
-        height: 76px;
+        height: 50px;
         padding: 7px;
         z-index: 9999;
         align-items: center;
@@ -667,9 +667,10 @@ footer span {
     .bottom-nav a,
     .bottom-nav button {
         position: relative;
+        z-index: 1;
         flex: 1;
         min-width: 0;
-        height: 62px;
+        height: 58px;
         padding: 4px 2px;
         display: flex;
         flex-direction: column;
@@ -677,17 +678,16 @@ footer span {
         justify-content: center;
         gap: 4px;
         border: 0;
-        border-radius: 18px;
-        background: transparent;
+        border-radius: 90px;
         color: #f8f5ef;
+        background: transparent;
         text-decoration: none;
-        font: 500 9px "Montserrat", sans-serif;
+        font: 500 9px 'Montserrat', sans-serif;
         cursor: pointer;
-        z-index: 1;
     }
 
     .bottom-nav .nav-icon {
-        font-size: 20px;
+        font-size: 15px;
         line-height: 1.2;
     }
 
@@ -702,7 +702,7 @@ footer span {
         position: absolute;
         inset: 0;
         z-index: -1;
-        border-radius: 18px;
+        border-radius: 90px;
         border: 1px solid #d7b56d88;
         background: linear-gradient(
             145deg,
@@ -870,12 +870,12 @@ document.addEventListener("touchstart", function() {
         <div class="stats">
             <div class="stat">
                 <strong id="totalMembers">08</strong>
-                <span>COMMITTEE</span>
+                <span>Anggota</span>
             </div>
 
             <div class="stat">
-                <strong>02</strong>
-                <span>MAIN TEAMS</span>
+                <strong>07</strong>
+                <span>Divisi</span>
             </div>
         </div>
     </div>
@@ -897,7 +897,12 @@ document.addEventListener("touchstart", function() {
         <select id="filterSelect" class="filter-box" aria-label="Filter divisi">
             <option value="all">Semua Divisi</option>
             <option value="leadership">Leadership</option>
-            <option value="creative">Creative Team</option>
+            <option value="bendahara">bendahara</option>
+            <option value="penampilan">penampilan</option>
+            <option value="dekorasi 1">dekorasi 1</option>
+            <option value="dekorasi 2">dekorasi 2</option>
+            <option value="bambu">kerangka bambu</option>
+            <option value="keamanan">keamanan</option>
         </select>
     </div>
 
@@ -910,7 +915,7 @@ document.addEventListener("touchstart", function() {
             data-desc="Pimpinan pelaksana acara dan mengoordinasikan seluruh bagian kepanitiaan.">
             <div class="photo">01</div>
             <div class="role">Ketua Pelaksana</div>
-            <div class="name">adnan maulana sidiq</div>
+            <div class="name">ADNAN MAULANA SIDIQ</div>
             <div class="desc">Pimpinan pelaksana acara</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
@@ -922,19 +927,44 @@ document.addEventListener("touchstart", function() {
             data-desc="Bertanggung jawab atas administrasi dan membantu kebutuhan properti acara.">
             <div class="photo">02</div>
             <div class="role">Sekretaris</div>
-            <div class="name">muhamad iqballudin</div>
+            <div class="name">MUHAMAD IQBALLUDIN</div>
             <div class="desc">Administrasi dan properti acara</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
         <div class="card"
             data-team="leadership"
+            data-team="bendahara"
             data-name="langit zayied maliki"
             data-role="bendahara"
             data-desc="Mengelola anggaran dan keuangan kegiatan Panggung Gembira 620.">
-            <div class="photo">03</div>
+            <div class="photo">0</div>
             <div class="role">Bendahara</div>
-            <div class="name">langit zayied maliki</div>
+            <div class="name">LANGIT JAYIED MALIKI</div>
+            <div class="desc">Pengelola keuangan</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+
+        <div class="card"
+            data-team="bendahara"
+            data-name="muhammad raffy ramdhani"
+            data-role="bendahara"
+            data-desc="Mengelola anggaran dan keuangan kegiatan Panggung Gembira 620.">
+            <div class="photo">0</div>
+            <div class="role">Bendahara</div>
+            <div class="name">MUHAMMAD RAFFY RAMDHANI</div>
+            <div class="desc">Pengelola keuangan</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+          
+        <div class="card"
+            data-team="bendahara"
+            data-name="rahmat syukrie r"
+            data-role="bendahara"
+            data-desc="Mengelola anggaran dan keuangan kegiatan Panggung Gembira 620.">
+            <div class="photo">0</div>
+            <div class="role">Bendahara</div>
+            <div class="name">RAHMAT SYUKRIE R</div>
             <div class="desc">Pengelola keuangan</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
@@ -944,61 +974,163 @@ document.addEventListener("touchstart", function() {
             data-name="syahdan kristhoper abimannyu"
             data-role="penampilan"
             data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
-            <div class="photo">04</div>
+            <div class="photo">0</div>
             <div class="role">Penampilan</div>
-            <div class="name">syahdan kristhoper abimannyu</div>
+            <div class="name">SYAHDAN KRISTHOPER ABIMANNYU</div>
             <div class="desc">Konsep penampilan di dalam acara</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
         <div class="card"
-            data-team="creative"
+            data-team="penampilan"
+            data-name="muhamad fabiansyah"
+            data-role="penampilan"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
+            <div class="photo">0</div>
+            <div class="role">Penampilan</div>
+            <div class="name">MUHAMMAD FABIANSYAH</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+        
+        <div class="card"
+            data-team="penampilan"
+            data-name="muhammad syahdan syakuran"
+            data-role="penampilan"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
+            <div class="photo">0</div>
+            <div class="role">Penampilan</div>
+            <div class="name">MUHAMMAD SYAHDAN SYAKURAN</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+           
+        <div class="card"
+            data-team="penampilan"
+            data-name="muhammad alfian maulana"
+            data-role="penampilan"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
+            <div class="photo">0</div>
+            <div class="role">Penampilan</div>
+            <div class="name">MUHAMMAD ALFIAN MAULANA</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+           
+        <div class="card"
+            data-team="penampilan"
+            data-name="desta pratama"
+            data-role="penampilan"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
+            <div class="photo">0</div>
+            <div class="role">Penampilan</div>
+            <div class="name">DESTA PRATAMA</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+        
+           
+        <div class="card"
+            data-team="penampilan"
+            data-name="muhammad fakhrie anugrah"
+            data-role="penampilan"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
+            <div class="photo">0</div>
+            <div class="role">Penampilan</div>
+            <div class="name">MUHAMMAD FAKHRIE ANUGRAH</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+           
+        <div class="card"
+            data-team="penampilan"
+            data-name="muhammad fawwaz al-farizy"
+            data-role="penampilan"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
+            <div class="photo">0</div>
+            <div class="role">Penampilan</div>
+            <div class="name">MUHAMMAD FAWWAZ AL-FARIZY</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+           
+        <div class="card"
+            data-team="penampilan"
+            data-name="muhammad kean divie anugrah"
+            data-role="penampilan"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
+            <div class="photo">0</div>
+            <div class="role">Penampilan</div>
+            <div class="name">MUHAMMAD KEAN DIVIE ANUGRAH</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+              
+        <div class="card"
+            data-team="penampilan"
+            data-name="fairuz zahran"
+            data-role="penampilan"
+            data-team="dekorasi 2"
+            data-name="fairuz zahran"
+            data-role="dekorasi 2"
+            data-desc="Bertanggung jawab atas konsep penampilan di dalam acara.">
+            <div class="photo">0</div>
+            <div class="role">Penampilan</div>
+            <div class="name">FAIRUZ ZAHRAN</div>
+            <div class="desc">Konsep penampilan di dalam acara</div>
+            <button class="detail-btn">LIHAT PROFIL</button>
+        </div>
+
+        
+        <div class="card"
+            data-team="leadership"
             data-name="fajar ramdhani abdullah"
             data-role="keamanan"
             data-desc="Bertanggung jawab menjaga keamanan dan ketertiban selama acara berlangsung.">
-            <div class="photo">05</div>
+            <div class="photo"></div>
             <div class="role">Keamanan</div>
-            <div class="name">fajar ramdhani abdullah</div>
+            <div class="name">FAJAR RAMDHANI ABDULLAH</div>
             <div class="desc">Mengamankan acara</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
         <div class="card"
-            data-team="creative"
+            data-team="leadership"
             data-name="melvin nabihan abdul kholiq"
             data-role="dekorasi"
             data-desc="Mengatur visual, dekorasi, dan tata panggung agar acara memiliki tampilan yang menarik.">
             <div class="photo">06</div>
             <div class="role">Dekorasi</div>
-            <div class="name">melvin nabihan abdul kholiq</div>
+            <div class="name">MELVIN NABIHAN ABDUL KHOLIQ</div>
             <div class="desc">Visual dan tata panggung</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
         <div class="card"
-            data-team="creative"
+            data-team="leadership"
             data-name="aqsa hedi nugraha"
             data-role="multimedia"
             data-desc="Mengelola kebutuhan audio, visual, dan dokumentasi multimedia acara.">
             <div class="photo">07</div>
             <div class="role">Multimedia</div>
-            <div class="name">aqsa hedi nugraha</div>
+            <div class="name">ADYAKSA HEDI NUGRAHA</div>
             <div class="desc">Audio, visual dan dokumentasi</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
 
         <div class="card"
-            data-team="creative"
+            data-team="leadership"
             data-name="hafiz alfino"
             data-role="perlengkapan"
             data-desc="Menyiapkan perlengkapan dan kebutuhan teknis untuk mendukung jalannya acara.">
             <div class="photo">08</div>
             <div class="role">Perlengkapan</div>
-            <div class="name">hafiz alfino</div>
+            <div class="name">HAFIZ ALFINO</div>
             <div class="desc">Kebutuhan teknis acara</div>
             <button class="detail-btn">LIHAT PROFIL</button>
         </div>
-
+        
+        
     </div>
 
     <div class="no-result" id="noResult">
