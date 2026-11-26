@@ -209,7 +209,7 @@ a {
     border: 1px solid #d7b56d55;
     color: var(--white);
     padding: 14px 16px;
-    border-radius: 7px;
+    border-radius: 30px;
     outline: none;
     font-family: inherit;
     font-size: 11px;
@@ -609,25 +609,50 @@ footer span { color: var(--gold); }
         right: 12px;
         bottom: 12px;
         width: calc(100% - 24px);
-        height: 76px;
+        height: 50px;
         padding: 7px;
-        border-radius: 25px;
+        border-radius: 90px;
         align-items: center;
         justify-content: space-around;
         gap: 3px;
         z-index: 9999;
 
-        background: rgba(75, 25, 43, .72);
-        border: 1px solid rgba(215, 181, 109, .45);
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
 
-        backdrop-filter: blur(24px) saturate(170%);
-        -webkit-backdrop-filter: blur(24px) saturate(170%);
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
 
         box-shadow:
-            0 12px 35px rgba(0,0,0,.35),
-            inset 0 1px 2px rgba(255,255,255,.2);
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
 
         overflow: hidden;
+    }
+ .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
     }
 
     .bottom-nav a,
@@ -635,15 +660,15 @@ footer span { color: var(--gold); }
         position: relative;
         flex: 1;
         min-width: 0;
-        height: 62px;
+        height: 58px;
         padding: 4px 2px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 4px;
-        border: none;
-        border-radius: 18px;
+        border: 0;
+        border-radius: 90px;
         background: transparent;
         color: #f8f5ef;
         text-decoration: none;
@@ -653,16 +678,59 @@ footer span { color: var(--gold); }
     }
 
     .bottom-nav .nav-icon {
-        font-size: 20px;
+        font-size: 15px;
         line-height: 1.2;
     }
 
     .bottom-nav a.active,
     .bottom-nav button.active {
         color: #f3dfad;
-        background: rgba(215,181,109,.13);
-        border: 1px solid rgba(215,181,109,.4);
-        box-shadow: inset 0 1px 8px rgba(255,255,255,.12);
+    }
+
+    .bottom-nav a.active::before,
+    .bottom-nav button.active::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: 90px;
+        border: 1px solid #d7b56d88;
+        background: linear-gradient(
+            145deg,
+            #ffffff35,
+            #d7b56d20,
+            #641d3555
+        );
+        box-shadow:
+            inset 0 1px 8px #ffffff25,
+            0 0 15px #d7b56d22;
+    }
+
+    .bottom-nav a.active::after,
+    .bottom-nav button.active::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 9px;
+        width: 11px;
+        height: 14px;
+        border: 1px solid #fff9;
+        border-radius: 60% 60% 60% 10%;
+        transform: rotate(-38deg);
+        background: radial-gradient(
+            ellipse at 30% 22%,
+            #fff 0 12%,
+            #f3dfad 32%,
+            #d7b56d 65%,
+            #641d35 100%
+        );
+        box-shadow: 0 0 8px #fff9, 0 0 13px #d7b56d99;
+        pointer-events: none;
+    }
+
+    .bottom-nav a.active .nav-icon {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 5px #d7b56d);
     }
 
     .menu-popup {
@@ -674,7 +742,7 @@ footer span { color: var(--gold); }
         min-width: 175px;
         padding: 9px;
         border: 1px solid rgba(215,181,109,.5);
-        border-radius: 18px;
+        border-radius: 90px;
         background: rgba(73,49,38,.92);
 
         backdrop-filter: blur(25px) saturate(180%);
@@ -834,6 +902,7 @@ document.addEventListener("touchstart", function() {
 
             <select id="categoryFilter" aria-label="Filter kategori">
                 <option value="all">Semua Kategori</option>
+                <option value="wisuda">wisuda kelas akhir</option>
                 <option value="Pembukaan">Pembukaan</option>
                 <option value="Penampilan">Penampilan</option>
                 <option value="Hiburan">Hiburan</option>
