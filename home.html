@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d19">
+<title>PG 620 | Panggung Gembira</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #100d19;
+    --maroon: #641d35;
+    --brown: #493126;
+    --gold: #d7b56d;
+    --light: #f3dfad;
+    --white: #f8f5ef;
+    --muted: #b8b1bd;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    background:
+        radial-gradient(circle at 15% 15%, #49312666, transparent 40%),
+        radial-gradient(circle at 85% 80%, #641d3544, transparent 40%),
+        var(--navy);
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 150px 22px 100px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 45%, #641d3525, transparent 60%);
+}
+
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: min(48vw, 570px);
+    aspect-ratio: 1;
+    border: 1px solid #d7b56d20;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero::before {
+    top: 18%;
+    left: -28%;
+    box-shadow: 0 0 0 22px #d7b56d08,
+                0 0 0 48px #d7b56d05;
+}
+
+.hero::after {
+    right: -28%;
+    bottom: -12%;
+    box-shadow: 0 0 0 22px #d7b56d08,
+                0 0 0 48px #d7b56d05;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: min(900px, 100%);
+    animation: appear 1s ease both;
+}
+
+.eyebrow {
+    margin-bottom: 25px;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    line-height: 1.9;
+}
+
+.hero h1 {
+    color: var(--light);
+    font: 800 clamp(85px, 15vw, 165px)/1 'Cinzel', serif;
+    letter-spacing: 5px;
+    text-shadow: 0 8px 45px #0008;
+}
+.hero-logo {
+    display: block;
+    width: min(300px, 75%);
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+    margin: 0 auto;
+    filter: drop-shadow(0 8px 25px #0006);
+    animation: appear 1s ease both;
+}
+.hero h2 {
+    margin-top: 18px;
+    color: var(--white);
+    font: 500 clamp(19px, 3.5vw, 36px)/1.5 'Cinzel', serif;
+    letter-spacing: clamp(2px, 1vw, 8px);
+}
+
+.gold-line {
+    width: 120px;
+    height: 1px;
+    margin: 30px auto;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.description {
+    max-width: 650px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2.1;
+}
+
+/* BUTTON */
+.hero-actions {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.btn {
+    min-width: 165px;
+    padding: 15px 23px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gold);
+    border-radius: 90px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px #0005;
+}
+
+.btn-primary {
+    border-color: transparent;
+    color: #17111a;
+    background: linear-gradient(135deg, var(--light), #bd9148);
+}
+
+.btn-secondary {
+    color: var(--light);
+    background: #641d3526;
+}
+
+.btn-secondary:hover {
+    background: #641d3560;
+}
+
+/* SECTION */
+.section {
+    padding: 95px 6%;
+    text-align: center;
+}
+
+.section-inner {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.section-label {
+    margin-bottom: 15px;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+
+.section h2 {
+    color: var(--light);
+    font: 600 clamp(26px, 4vw, 38px)/1.3 'Cinzel', serif;
+}
+
+/* INTRO */
+.intro-card {
+    max-width: 790px;
+    margin: 35px auto 0;
+    padding: 35px;
+    border: 1px solid #d7b56d44;
+    border-radius: 90px;
+    color: #c4bdc8;
+    background: linear-gradient(
+        145deg,
+        #641d3535,
+        #49312635,
+        #ffffff08
+    );
+    font-size: 13px;
+    line-height: 2.1;
+    transition: .3s;
+}
+
+.intro-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+}
+
+/* FEATURES */
+.features {
+    margin-top: 42px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    text-align: left;
+}
+
+.feature {
+    min-height: 190px;
+    padding: 28px 25px;
+    display: block;
+    border: 1px solid #d7b56d33;
+    border-radius: 70px;
+    color: inherit;
+    background: linear-gradient(
+        145deg,
+        #641d3535,
+        #49312645
+    );
+    text-decoration: none;
+    transition: .3s;
+}
+
+.feature:hover {
+    transform: translateY(-7px);
+    border-color: var(--gold);
+    box-shadow: 0 12px 30px #0004;
+}
+
+.feature-symbol {
+    margin-bottom: 20px;
+    color: var(--gold);
+    font-size: 29px;
+}
+
+.feature h3 {
+    margin-bottom: 11px;
+    color: var(--light);
+    font: 600 17px 'Cinzel', serif;
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+/* FOOTER */
+footer {
+    padding: 32px 18px;
+    border-top: 1px solid #d7b56d33;
+    color: #8f8793;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 1.6px;
+    line-height: 2.5;
+}
+
+footer span {
+    color: var(--gold);
+}
+
+/* ANIMATION */
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE CONTENT */
+@media (max-width: 720px) {
+    .hero {
+        min-height: 95vh;
+        padding: 130px 20px 70px;
+    }
+
+    .eyebrow {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .hero h1 {
+        letter-spacing: 2px;
+    }
+
+    .hero h2 {
+        letter-spacing: 2px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .hero-actions {
+        gap: 10px;
+    }
+
+    .btn {
+        min-width: 145px;
+        padding: 14px 17px;
+        font-size: 9px;
+    }
+
+    .section {
+        padding: 75px 20px;
+    }
+
+    .intro-card {
+        padding: 25px 20px;
+        font-size: 12px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .feature {
+        min-height: auto;
+    }
+
+    footer {
+        font-size: 9px;
+    }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* MOBILE LIQUID GLASS NAVIGATION */
+/* Desktop tidak menampilkan navigasi bawah */
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
+/* HP: Liquid Glass sama seperti Gallery */
+@media (max-width: 720px) {
+    body {
+        padding-bottom: 110px !important;
+    }
+
+    .bottom-nav {
+        position: fixed;
+        top: auto;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+        width: auto;
+        height: 50px;
+        padding: 5px;
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+        border-radius: 25px;
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+        isolation: isolate;
+    }
+
+    .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        border-radius: 50%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        min-width: 0;
+        height: 58px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0;
+        border-radius: 90px;
+        color: #f8f5ef;
+        background: transparent;
+        text-decoration: none;
+        font: 500 9px 'Montserrat', sans-serif;
+        cursor: pointer;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 15px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+        background: linear-gradient(
+            145deg,
+            rgba(255,255,255,.22),
+            rgba(215,181,109,.16),
+            rgba(100,29,53,.25)
+        );
+        border: 1px solid rgba(255,255,255,.32);
+        box-shadow:
+            inset 0 1px 7px rgba(255,255,255,.25),
+            0 0 14px rgba(215,181,109,.15);
+    }
+
+    .bottom-nav a.active .nav-icon,
+    .bottom-nav button.active .nav-icon {
+        transform: translateY(-1px);
+        filter: drop-shadow(0 0 5px rgba(243,223,173,.75));
+    }
+
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 98px;
+        z-index: 10000;
+        min-width: 175px;
+        padding: 9px;
+        border: 1px solid rgba(255,255,255,.45);
+        border-radius: 17px;
+        color: var(--light);
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.20),
+            rgba(55,35,34,.88)
+        );
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        box-shadow:
+            0 12px 30px #0008,
+            inset 0 1px 2px #ffffff45;
+    }
+
+    .menu-popup.show {
+        display: block;
+    }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .menu-popup a:hover {
+        background: #ffffff18;
+    }
+}
+</style>
+</head>
+<audio id="backsound" src="./onty.mp3.mp3"
+loop preload="auto"></audio>
+
+<script>
+const audio = document.getElementById("backsound");
+
+audio.volume = 0.5;
+
+document.addEventListener("click", function() {
+  audio.play();
+}, { once: true });
+
+document.addEventListener("touchstart", function() {
+  audio.play();
+}, { once: true });
+</script>
+<body>
+
+<main>
+
+<section class="hero">
+    <div class="hero-content">
+        <p class="eyebrow">
+            PONDOK PESANTREN MODERN MAFAZAH
+        </p>
+
+        <img src="logo316.png"
+     alt="Logo Panggung Gembira 620"
+     class="hero-logo">
+
+        <h2>PANGGUNG GEMBIRA</h2>
+        <h2>AL-MUBTARIZ GENERATION</h2>
+
+        <div class="gold-line"></div>
+
+        <p class="description">
+            ENAK YAH JADI LU MAH
+            <br>
+            "ENAK LAH MASSA ENGGA"
+        </p>
+
+        <div class="hero-actions">
+            <a href="about.html" class="btn btn-primary">
+                ABOUT AL-MUBTARIZ
+            </a>
+
+            <a href="gallery.html" class="btn btn-secondary">
+                OUR MEMORIES
+            </a>
+
+            <a href="video.html" class="btn btn-primary">
+                LIVE STREAMING
+            </a>
+
+            <a href="committee.html" class="btn btn-secondary">
+                COMMITTEE 620
+            </a>
+
+            <a href="timing.html" class="btn btn-primary">
+                TIMING ACARA
+            </a>
+
+            <a href="contact.html" class="btn btn-secondary">
+                SOSIAL MEDIA 620
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-inner">
+        <p class="section-label">WELCOME TO OUR EVENT</p>
+        <h2>Beyond The Stage</h2>
+
+        <div class="intro-card">
+            Panggung Gembira 620 bukan sekadar pertunjukan.
+            Ini adalah bukti kreativitas anak bangsa,
+            perjuangan, dan karya santri yang menghadirkan
+            pertunjukan serta sebuah pengalaman yang luar biasa.
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-inner">
+        <p class="section-label">DISCOVER MORE</p>
+        <h2>Explore PG 620</h2>
+
+        <div class="features">
+            <a href="about.html" class="feature">
+                <div class="feature-symbol">✦</div>
+                <h3>Story</h3>
+                <p>
+                    Kenali perjalanan dan cerita
+                    Panggung Gembira 620.
+                </p>
+            </a>
+
+            <a href="gallery.html" class="feature">
+                <div class="feature-symbol">◇</div>
+                <h3>Gallery</h3>
+                <p>
+                    Dokumentasi momen dan kenangan
+                    di balik panggung.
+                </p>
+            </a>
+
+            <a href="timing.html" class="feature">
+                <div class="feature-symbol">✧</div>
+                <h3>Events</h3>
+                <p>
+                    Temukan informasi dan rangkaian
+                    kegiatan acara.
+                </p>
+            </a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2027 <span>PANGGUNG GEMBIRA 620</span></p>
+    <p>PONDOK PESANTREN MODERN MAFAZAH</p>
+    <p>AL-MUBTARIZ GENERATION</p>
+</footer>
+
+<!-- NAVIGASI BAWAH MOBILE -->
+<nav class="bottom-nav" aria-label="Navigasi bawah">
+    <a href="home.html" data-page="home.html">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="committee.html" data-page="committee.html">
+        <span class="nav-icon">♧</span>
+        <span>Panitia</span>
+    </a>
+
+    <a href="gallery.html" data-page="gallery.html">
+        <span class="nav-icon">▧</span>
+        <span>Galeri</span>
+    </a>
+
+    <a href="video.html" data-page="video.html">
+        <span class="nav-icon">▷</span>
+        <span>Video</span>
+    </a>
+
+    <button type="button" id="bottomMenuToggle"
+        aria-expanded="false" aria-controls="bottomMenu">
+        <span class="nav-icon">☰</span>
+        <span>Menu</span>
+    </button>
+</nav>
+
+<div class="menu-popup" id="bottomMenu">
+    <a href="about.html">📖 Tentang</a>
+    <a href="timing.html">📅 Jadwal acara</a>
+    <a href="countdown.html">⏳ Countdown</a>
+    <a href="contact.html">✉ Kontak</a>
+    <a href="dashboard.html">⚙️ Admin</a>
+</div>
+
+<script>
+(() => {
+    const page = location.pathname.split("/").pop() || "home.html";
+
+    document.querySelectorAll(".bottom-nav a[data-page]").forEach(link => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
+    });
+
+    const toggle = document.getElementById("bottomMenuToggle");
+    const popup = document.getElementById("bottomMenu");
+
+    if (!toggle || !popup) return;
+
+    toggle.addEventListener("click", () => {
+        const opened = popup.classList.toggle("show");
+
+        toggle.classList.toggle("active", opened);
+        toggle.setAttribute("aria-expanded", String(opened));
+    });
+
+    document.addEventListener("click", event => {
+        if (!popup.contains(event.target) && !toggle.contains(event.target)) {
+            popup.classList.remove("show");
+            toggle.classList.remove("active");
+            toggle.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

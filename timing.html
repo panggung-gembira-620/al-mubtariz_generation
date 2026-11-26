@@ -1,0 +1,1336 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d19">
+<title>Timing Acara | PG 620</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --navy: #100d19;
+    --maroon: #641d35;
+    --brown: #493126;
+    --gold: #d7b56d;
+    --light-gold: #f3dfad;
+    --white: #f8f5ef;
+    --muted: #b8b1bd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background:
+        radial-gradient(circle at 12% 10%, #49312666, transparent 32%),
+        radial-gradient(circle at 90% 55%, #641d3544, transparent 35%),
+        var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAVBAR DESKTOP */
+.desktop-nav {
+    position: fixed;
+    top: 15px;
+    left: 5%;
+    width: 90%;
+    padding: 16px 22px;
+    background: #ffffff0d;
+    border: 1px solid #ffffff20;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.desktop-nav .nav-links a {
+    color: #ddd;
+    font-size: 9px;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.desktop-nav .nav-links a:hover,
+.desktop-nav .nav-links a.active {
+    color: var(--gold);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 120px 20px 65px;
+    background: linear-gradient(135deg, #641d3533, transparent 65%);
+}
+
+.tag {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(40px, 7vw, 75px);
+    letter-spacing: 4px;
+    font-weight: 600;
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2;
+    margin-top: 20px;
+}
+
+/* MAIN */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px 7% 90px;
+}
+
+.section-heading { margin-bottom: 30px; }
+
+.section-heading small {
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 4px;
+}
+
+.section-heading h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 27px;
+    color: var(--white);
+    margin-top: 10px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.9;
+    margin-top: 10px;
+}
+
+/* LIVE CLOCK */
+.live-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 45px;
+}
+
+.live-card {
+    padding: 25px;
+    border: 1px solid #d7b56d44;
+    border-radius: 12px;
+    background: linear-gradient(130deg, #641d3544, #49312644);
+}
+
+.live-card small {
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.live-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(23px, 4vw, 35px);
+    margin-top: 13px;
+    color: var(--white);
+}
+
+.live-card p {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 8px;
+}
+
+#nextEventName {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    color: var(--light-gold);
+}
+
+/* SEARCH */
+.tools {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.tools input,
+.tools select {
+    background: #211927;
+    border: 1px solid #d7b56d55;
+    color: var(--white);
+    padding: 14px 16px;
+    border-radius: 30px;
+    outline: none;
+    font-family: inherit;
+    font-size: 11px;
+}
+
+.tools input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.tools select { min-width: 170px; }
+
+.tools input:focus,
+.tools select:focus {
+    border-color: var(--gold);
+}
+
+/* TIMELINE */
+.timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(var(--gold), var(--maroon), transparent);
+}
+
+.event {
+    position: relative;
+    padding: 25px;
+    margin-bottom: 20px;
+    border: 1px solid #d7b56d33;
+    border-radius: 12px;
+    background: linear-gradient(120deg, #641d3533, #49312655);
+    transition: .3s;
+}
+
+.event:hover {
+    transform: translateX(5px);
+    border-color: var(--gold);
+}
+
+.event::before {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 29px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid var(--navy);
+    box-shadow: 0 0 12px #d7b56d88;
+}
+
+.event.current {
+    border-color: var(--gold);
+    background: linear-gradient(120deg, #641d3566, #49312677);
+    box-shadow: 0 0 25px #d7b56d13;
+}
+
+.event.current::before {
+    background: #f3dfad;
+    box-shadow: 0 0 18px var(--gold);
+}
+
+.event-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.time {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.category {
+    color: var(--light-gold);
+    background: #d7b56d1b;
+    border: 1px solid #d7b56d55;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.event h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    margin-bottom: 9px;
+}
+
+.event p {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.9;
+}
+
+.event-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 17px;
+}
+
+.duration {
+    color: var(--gold);
+    font-size: 9px;
+}
+
+.status {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+}
+
+.event.current .status { color: var(--light-gold); }
+
+.empty {
+    display: none;
+    text-align: center;
+    color: var(--muted);
+    padding: 40px 15px;
+    border: 1px dashed #d7b56d55;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+/* NOTE */
+.note {
+    margin-top: 35px;
+    padding: 20px;
+    border-left: 3px solid var(--gold);
+    background: #641d3522;
+    border-radius: 5px;
+}
+
+.note p {
+    font-size: 10px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.note strong { color: var(--gold); }
+
+.note a {
+    color: var(--light-gold);
+    font-weight: 600;
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #d7b56d33;
+    text-align: center;
+    padding: 30px 15px;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 2px;
+    line-height: 2.2;
+}
+
+footer span { color: var(--gold); }
+
+/* TABLET */
+@media(max-width:1000px) {
+    .menu-toggle { display: block; }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 25px 7%;
+        background: #100d19;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+        border-bottom: 1px solid #d7b56d55;
+    }
+
+    .nav-links.open { display: flex; }
+}
+
+/* MOBILE CONTENT */
+@media(max-width:600px) {
+    .hero { padding: 70px 20px 45px; }
+
+    .hero h1 { letter-spacing: 2px; }
+
+    .live-panel { grid-template-columns: 1fr; }
+
+    .event { padding: 19px; }
+
+    .event h3 { font-size: 15px; }
+
+    .time { font-size: 10px; }
+
+    .container {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .tools input,
+    .tools select {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* LIQUID GLASS NAVIGATION */
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
+@media(max-width:720px) {
+    body {
+        padding-bottom: 108px !important;
+    }
+
+    /* Sembunyikan navbar dan hero desktop */
+    .desktop-nav,
+    .hero {
+        display: none !important;
+    }
+
+    .container {
+        padding: 30px 6% 50px;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        height: 76px;
+        padding: 7px;
+        z-index: 9999;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+
+        overflow: hidden;
+    }
+
+    .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        height: 62px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0;
+        border-radius: 18px;
+        background: transparent;
+        color: #f8f5ef;
+        text-decoration: none;
+        font: 500 9px 'Montserrat', sans-serif;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+    }
+
+    .bottom-nav a.active::before,
+    .bottom-nav button.active::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: 18px;
+        border: 1px solid #d7b56d88;
+        background: linear-gradient(
+            145deg,
+            #ffffff35,
+            #d7b56d20,
+            #641d3555
+        );
+        box-shadow:
+            inset 0 1px 8px #ffffff25,
+            0 0 15px #d7b56d22;
+    }
+
+    .bottom-nav a.active::after,
+    .bottom-nav button.active::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 9px;
+        width: 11px;
+        height: 14px;
+        border: 1px solid #fff9;
+        border-radius: 60% 60% 60% 10%;
+        transform: rotate(-38deg);
+        background: radial-gradient(
+            ellipse at 30% 22%,
+            #fff 0 12%,
+            #f3dfad 32%,
+            #d7b56d 65%,
+            #641d35 100%
+        );
+        box-shadow: 0 0 8px #fff9, 0 0 13px #d7b56d99;
+        pointer-events: none;
+    }
+
+    .bottom-nav a.active .nav-icon {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 5px #d7b56d);
+    }
+
+/* NAVIGASI MOBILE - SAMA PERSIS SEPERTI GALLERY */
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    body {
+        padding-bottom: 110px !important;
+    }
+
+    .desktop-nav,
+    .hero {
+        display: none !important;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: calc(100% - 24px);
+        height: 50px;
+        padding: 7px;
+        border-radius: 90px;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+        z-index: 9999;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+
+        overflow: hidden;
+    }
+ .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        height: 58px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0;
+        border-radius: 90px;
+        background: transparent;
+        color: #f8f5ef;
+        text-decoration: none;
+        font: 500 9px 'Montserrat', sans-serif;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 15px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+    }
+
+    .bottom-nav a.active::before,
+    .bottom-nav button.active::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: 90px;
+        border: 1px solid #d7b56d88;
+        background: linear-gradient(
+            145deg,
+            #ffffff35,
+            #d7b56d20,
+            #641d3555
+        );
+        box-shadow:
+            inset 0 1px 8px #ffffff25,
+            0 0 15px #d7b56d22;
+    }
+
+    .bottom-nav a.active::after,
+    .bottom-nav button.active::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 9px;
+        width: 11px;
+        height: 14px;
+        border: 1px solid #fff9;
+        border-radius: 60% 60% 60% 10%;
+        transform: rotate(-38deg);
+        background: radial-gradient(
+            ellipse at 30% 22%,
+            #fff 0 12%,
+            #f3dfad 32%,
+            #d7b56d 65%,
+            #641d35 100%
+        );
+        box-shadow: 0 0 8px #fff9, 0 0 13px #d7b56d99;
+        pointer-events: none;
+    }
+
+    .bottom-nav a.active .nav-icon {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 5px #d7b56d);
+    }
+
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 103px;
+        z-index: 10000;
+        min-width: 175px;
+        padding: 9px;
+        border: 1px solid rgba(215,181,109,.5);
+        border-radius: 90px;
+        background: rgba(73,49,38,.92);
+
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+
+        box-shadow: 0 12px 30px rgba(0,0,0,.4);
+    }
+
+    .menu-popup.show {
+        display: block;
+    }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .menu-popup a:hover {
+        background: rgba(255,255,255,.12);
+    }
+}
+
+
+    /* POPUP MENU */
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 98px;
+        z-index: 10000;
+        min-width: 185px;
+        padding: 9px;
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+        border-radius: 17px;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.72) 75%,
+            rgba(73,49,38,.88)
+        );
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.4),
+            inset 0 2px 3px rgba(255,255,255,.35);
+    }
+
+    .menu-popup.show { display: block; }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+        transition: .25s;
+    }
+
+    .menu-popup a:hover {
+        background: #ffffff20;
+        padding-left: 17px;
+    }
+}
+</style>
+</head>
+<audio id="backsound" src="./onty.mp3.mp3"
+loop preload="auto"></audio>
+
+<script>
+const audio = document.getElementById("backsound");
+
+audio.volume = 0.5;
+
+document.addEventListener("click", function() {
+  audio.play();
+}, { once: true });
+
+document.addEventListener("touchstart", function() {
+  audio.play();
+}, { once: true });
+</script>
+<body>
+
+<!-- NAVBAR DESKTOP -->
+<nav class="desktop-nav">
+    <a href="home.html" class="logo">PG 620</a>
+
+    <button class="menu-toggle" id="menuToggle"
+        aria-label="Buka menu" aria-expanded="false">☰</button>
+
+    <div class="nav-links" id="navLinks">
+        <a href="home.html">Home</a>
+        <a href="about.html">Tentang 620</a>
+        <a href="gallery.html">Gallery 620</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="committee.html">Kepanitiaan</a>
+        <a href="video.html">Live Streaming</a>
+        <a href="timing.html" class="active">Timing Acara</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO DESKTOP -->
+<header class="hero">
+    <div class="tag">PG 620 • EVENT MANAGEMENT</div>
+    <h1>TIMING <span>ACARA</span></h1>
+    <p>
+        Every moment has its own time.<br>
+        Susunan waktu pelaksanaan Panggung Gembira 620.
+    </p>
+</header>
+
+<main class="container">
+
+    <!-- JAM DAN ACARA BERIKUTNYA -->
+    <section class="live-panel">
+        <div class="live-card">
+            <small>JAM SEKARANG • WIB</small>
+            <h2 id="liveClock">00:00:00</h2>
+            <p id="liveDate">Memuat tanggal...</p>
+        </div>
+
+        <div class="live-card">
+            <small>ACARA BERIKUTNYA</small>
+            <h2 id="nextEventName">Memuat...</h2>
+            <p id="nextCountdown">Menunggu informasi waktu...</p>
+        </div>
+    </section>
+
+    <!-- RUNDOWN -->
+    <section>
+        <div class="section-heading">
+            <small>EVENT SCHEDULE</small>
+            <h2>Rundown Acara</h2>
+            <p>
+                Rangkaian kegiatan dan waktu penampilan
+                Panggung Gembira 620.
+            </p>
+        </div>
+
+        <div class="tools">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari nama acara..."
+                aria-label="Cari acara">
+
+            <select id="categoryFilter" aria-label="Filter kategori">
+                <option value="all">Semua Kategori</option>
+                <option value="wisuda">wisuda kelas akhir</option>
+                <option value="Pembukaan">Pembukaan</option>
+                <option value="Penampilan">Penampilan</option>
+                <option value="Penutupan">Penutupan</option>
+            </select>
+        </div>
+
+        <div class="timeline" id="timeline">
+
+            <article class="event"
+                data-title="Persiapan dan registrasi tamu"
+                data-category="Pembukaan"
+                data-start="16:00"
+                data-end="17:00">
+                <div class="event-top">
+                    <span class="time">16.00 – 17.00 WIB</span>
+                    <span class="category">PEMBUKAAN</span>
+                </div>
+                <h3>Persiapan</h3>
+                <p>Persiapan akhir panitia dan penyambutan para tamu undangan.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 60 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+            <article class="event"
+                data-title="Pembukaan acara"
+                data-category="Pembukaan"
+                data-start="17:00"
+                data-end="17:15">
+                <div class="event-top">
+                    <span class="time">17.00 – 17.15 WIB</span>
+                    <span class="category">PEMBUKAAN</span>
+                </div>
+                <h3>Pembukaan Acara</h3>
+                <p>Pembukaan resmi Panggung Gembira 620 oleh pembawa acara.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 15 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+            <article class="event"
+                data-title="Pembacaan ayat suci al quran"
+                data-category="Pembukaan"
+                data-start="17:15"
+                data-end="17:25">
+                <div class="event-top">
+                    <span class="time">17.15 – 17.25 WIB</span>
+                    <span class="category">PEMBUKAAN</span>
+                </div>
+                <h3>Pembacaan Ayat Suci Al-Qur'an</h3>
+                <p>Pembacaan ayat suci Al-Qur'an sebagai pembuka kegiatan.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 10 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+            <article class="event"
+                data-title="Sambutan pimpinan"
+                data-category="Pembukaan"
+                data-start="17:25"
+                data-end="17:45">
+                <div class="event-top">
+                    <span class="time">17.25 – 17.45 WIB</span>
+                    <span class="category">PEMBUKAAN</span>
+                </div>
+                <h3>Sambutan Pimpinan</h3>
+                <p>Sambutan dari pimpinan pondok dan pihak terkait.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 20 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+            <article class="event"
+                data-title="Penampilan pertama"
+                data-category="Penampilan"
+                data-start="17:45"
+                data-end="18:15">
+                <div class="event-top">
+                    <span class="time">17.45 – 18.15 WIB</span>
+                    <span class="category">PENAMPILAN</span>
+                </div>
+                <h3>Penampilan Pertama</h3>
+                <p>Isi dengan nama penampilan atau kelompok yang bertugas.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 30 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+            <article class="event"
+                data-title="Penampilan kedua"
+                data-category="Penampilan"
+                data-start="18:15"
+                data-end="18:45">
+                <div class="event-top">
+                    <span class="time">18.15 – 18.45 WIB</span>
+                    <span class="category">PENAMPILAN</span>
+                </div>
+                <h3>Penampilan Kedua</h3>
+                <p>Isi dengan nama penampilan atau kelompok yang bertugas.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 30 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+            <article class="event"
+                data-title="Hiburan dan interaksi"
+                data-category="Hiburan"
+                data-start="18:45"
+                data-end="19:00">
+                <div class="event-top">
+                    <span class="time">18.45 – 19.00 WIB</span>
+                    <span class="category">HIBURAN</span>
+                </div>
+                <h3>Hiburan & Interaksi</h3>
+                <p>Sesi hiburan dan interaksi bersama para tamu.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 15 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+            <article class="event"
+                data-title="Penampilan ketiga"
+                data-category="Penampilan"
+                data-start="19:00"
+                data-end="19:30">
+                <div class="event-top">
+                    <span class="time">19.00 – 19.30 WIB</span>
+                    <span class="category">PENAMPILAN</span>
+                </div>
+                <h3>Penampilan Ketiga</h3>
+                <p>Isi dengan nama penampilan atau kelompok yang bertugas.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 30 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+            <article class="event"
+                data-title="Penutupan dan doa"
+                data-category="Penutupan"
+                data-start="19:30"
+                data-end="20:00">
+                <div class="event-top">
+                    <span class="time">19.30 – 20.00 WIB</span>
+                    <span class="category">PENUTUPAN</span>
+                </div>
+                <h3>Penutupan & Doa</h3>
+                <p>Penutupan rangkaian acara dan doa bersama.</p>
+                <div class="event-bottom">
+                    <span class="duration">DURASI: 30 MENIT</span>
+                    <span class="status">MENUNGGU</span>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="empty" id="emptyMessage">
+            Acara yang kamu cari tidak ditemukan.
+        </div>
+    </section>
+
+    <div class="note">
+        <p>
+            <strong>CATATAN:</strong>
+            Jadwal di atas merupakan contoh timing acara.
+            Untuk mengirim susunan acara terbaru, silakan hubungi
+            <a href="https://wa.me/6285718118846" target="_blank" rel="noopener">
+                WhatsApp panitia
+            </a>.
+        </p>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2027 <span>PANGGUNG GEMBIRA 620</span></p>
+    <p>PONDOK PESANTREN MODERN MAFAZAH</p>
+    <p>AL-MUBTARIZ GENERATION</p>
+</footer>
+
+<!-- NAVIGASI BAWAH MOBILE -->
+<nav class="bottom-nav" aria-label="Navigasi bawah">
+    <a href="home.html" data-page="home.html">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="committee.html" data-page="committee.html">
+        <span class="nav-icon">♧</span>
+        <span>Panitia</span>
+    </a>
+
+    <a href="gallery.html" data-page="gallery.html">
+        <span class="nav-icon">▧</span>
+        <span>Galeri</span>
+    </a>
+
+    <a href="video.html" data-page="video.html">
+        <span class="nav-icon">▷</span>
+        <span>Video</span>
+    </a>
+
+    <button type="button" id="bottomMenuToggle"
+        aria-expanded="false" aria-controls="bottomMenu">
+        <span class="nav-icon">☰</span>
+        <span>Menu</span>
+    </button>
+</nav>
+
+<div class="menu-popup" id="bottomMenu">
+    <a href="about.html">📖 Tentang</a>
+    <a href="timing.html">📅 Jadwal acara</a>
+    <a href="countdown.html">⏳ Countdown</a>
+    <a href="contact.html">✉ Kontak</a>
+    <a href="dashboard.html">⚙️ Admin</a>
+</div>
+
+<script>
+// MENU NAVBAR DESKTOP
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+    const opened = navLinks.classList.toggle("open");
+    menuToggle.textContent = opened ? "✕" : "☰";
+    menuToggle.setAttribute("aria-expanded", opened);
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.textContent = "☰";
+        menuToggle.setAttribute("aria-expanded", "false");
+    });
+});
+
+// JAM DIGITAL WIB
+function updateClock() {
+    const now = new Date();
+
+    document.getElementById("liveClock").textContent =
+        now.toLocaleTimeString("id-ID", {
+            timeZone: "Asia/Jakarta",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+
+    document.getElementById("liveDate").textContent =
+        now.toLocaleDateString("id-ID", {
+            timeZone: "Asia/Jakarta",
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+}
+
+// STATUS DAN ACARA BERIKUTNYA
+function updateEvents() {
+    const now = new Date();
+
+    const jakartaTime = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Jakarta",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23"
+    }).format(now);
+
+    const [hours, minutes] = jakartaTime.split(":").map(Number);
+    const currentMinutes = hours * 60 + minutes;
+
+    const events = [...document.querySelectorAll(".event")];
+    let nextEvent = null;
+
+    events.forEach(event => {
+        const [startHour, startMinute] =
+            event.dataset.start.split(":").map(Number);
+
+        const [endHour, endMinute] =
+            event.dataset.end.split(":").map(Number);
+
+        const start = startHour * 60 + startMinute;
+        const end = endHour * 60 + endMinute;
+
+        const status = event.querySelector(".status");
+
+        event.classList.remove("current");
+
+        if (currentMinutes >= start && currentMinutes < end) {
+            status.textContent = "● SEDANG BERLANGSUNG";
+            event.classList.add("current");
+        } else if (currentMinutes >= end) {
+            status.textContent = "✓ SELESAI";
+        } else {
+            status.textContent = "MENUNGGU";
+
+            if (!nextEvent) {
+                nextEvent = {
+                    name: event.querySelector("h3").textContent,
+                    start: start
+                };
+            }
+        }
+    });
+
+    const nameElement = document.getElementById("nextEventName");
+    const countdownElement = document.getElementById("nextCountdown");
+
+    if (nextEvent) {
+        nameElement.textContent = nextEvent.name;
+
+        const difference = nextEvent.start - currentMinutes;
+        const h = Math.floor(difference / 60);
+        const m = difference % 60;
+
+        let countdownText = "Dimulai dalam ";
+
+        if (h > 0) countdownText += h + " jam ";
+        countdownText += m + " menit";
+
+        countdownElement.textContent = countdownText;
+    } else {
+        nameElement.textContent = "Semua acara selesai";
+        countdownElement.textContent =
+            "Terima kasih telah menyaksikan PG 620.";
+    }
+}
+
+// PENCARIAN DAN FILTER
+const searchInput = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
+const emptyMessage = document.getElementById("emptyMessage");
+
+function filterEvents() {
+    const keyword = searchInput.value.toLowerCase().trim();
+    const category = categoryFilter.value;
+
+    let count = 0;
+
+    document.querySelectorAll(".event").forEach(event => {
+        const title = event.dataset.title.toLowerCase();
+        const eventCategory = event.dataset.category;
+
+        const matchSearch = title.includes(keyword);
+        const matchCategory =
+            category === "all" || eventCategory === category;
+
+        const visible = matchSearch && matchCategory;
+
+        event.style.display = visible ? "block" : "none";
+
+        if (visible) count++;
+    });
+
+    emptyMessage.style.display = count === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input", filterEvents);
+categoryFilter.addEventListener("change", filterEvents);
+
+// UPDATE OTOMATIS
+function updatePage() {
+    updateClock();
+    updateEvents();
+}
+
+updatePage();
+setInterval(updatePage, 1000);
+
+// LIQUID GLASS MENU MOBILE
+(() => {
+    const page = location.pathname.split("/").pop() || "home.html";
+
+    const toggle = document.getElementById("bottomMenuToggle");
+    const popup = document.getElementById("bottomMenu");
+
+    document.querySelectorAll(".bottom-nav a[data-page]").forEach(link => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
+    });
+
+    const menuPages = [
+        "about.html",
+        "timing.html",
+        "countdown.html",
+        "contact.html",
+        "dashboard.html"
+    ];
+
+    if (menuPages.includes(page)) {
+        toggle.classList.add("active");
+    }
+
+    toggle.addEventListener("click", () => {
+        const opened = popup.classList.toggle("show");
+
+        toggle.classList.toggle(
+            "active",
+            opened || menuPages.includes(page)
+        );
+
+        toggle.setAttribute("aria-expanded", String(opened));
+    });
+
+    document.addEventListener("click", event => {
+        if (
+            !popup.contains(event.target) &&
+            !toggle.contains(event.target)
+        ) {
+            popup.classList.remove("show");
+            toggle.classList.toggle(
+                "active",
+                menuPages.includes(page)
+            );
+            toggle.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,811 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d19">
+<title>Contact | PG 620</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #100d19;
+    --maroon: #641d35;
+    --brown: #493126;
+    --gold: #d7b56d;
+    --light-gold: #f3dfad;
+    --white: #f8f5ef;
+    --muted: #b8b1bd;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 15% 15%, #49312655, transparent 40%),
+        radial-gradient(circle at 85% 80%, #641d3544, transparent 40%),
+        var(--navy);
+    color: var(--white);
+    font-family: "Montserrat", sans-serif;
+}
+
+/* DESKTOP NAVBAR */
+.site-header {
+    position: fixed;
+    top: 15px;
+    left: 5%;
+    width: 90%;
+    padding: 16px 22px;
+    background: #ffffff0d;
+    border: 1px solid #ffffff20;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-family: "Cinzel", serif;
+    color: var(--gold);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-decoration: none;
+}
+
+.site-header .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.site-header .nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 9px;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.site-header .nav-links a:hover,
+.site-header .nav-links a.active {
+    color: var(--gold);
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    min-height: 55vh;
+    padding: 155px 20px 55px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: min(48vw, 570px);
+    aspect-ratio: 1;
+    border: 1px solid #d7b56d20;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero::before {
+    top: 18%;
+    left: -28%;
+    box-shadow:
+        0 0 0 22px #d7b56d08,
+        0 0 0 48px #d7b56d05;
+}
+
+.hero::after {
+    right: -28%;
+    bottom: -12%;
+    box-shadow:
+        0 0 0 22px #d7b56d08,
+        0 0 0 48px #d7b56d05;
+}
+
+.hero-content {
+    width: min(850px, 100%);
+    animation: fadeUp .8s ease both;
+}
+
+.subtitle {
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(35px, 7vw, 65px);
+    color: var(--light-gold);
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-shadow: 0 8px 45px #0008;
+}
+
+.line {
+    width: 110px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        transparent
+    );
+    margin: 25px auto;
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+    margin-top: 15px;
+}
+
+/* MAIN */
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 20px 7% 80px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+/* CONTACT CARD */
+.card {
+    position: relative;
+    overflow: hidden;
+    padding: 35px 22px;
+    border-radius: 30px;
+    border: 1px solid #d7b56d44;
+    background: linear-gradient(145deg, #ffffff12, #ffffff04);
+    text-align: center;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    transition: .35s;
+    animation: fadeUp .7s ease both;
+}
+
+.card:nth-child(2) {
+    animation-delay: .1s;
+}
+
+.card:nth-child(3) {
+    animation-delay: .2s;
+}
+
+.card:nth-child(4) {
+    animation-delay: .3s;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background: var(--maroon);
+    filter: blur(75px);
+    opacity: .3;
+    top: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 35px #0005;
+}
+
+.symbol {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    border: 1px solid #d7b56d77;
+    background: linear-gradient(135deg, var(--maroon), var(--brown));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-gold);
+    font-size: 27px;
+}
+
+.card h3 {
+    color: var(--light-gold);
+    font-family: "Cinzel", serif;
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.9;
+    margin-bottom: 22px;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #17121a;
+    background: linear-gradient(
+        135deg,
+        var(--light-gold),
+        #b68b35
+    );
+    padding: 12px 23px;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px #d7b56d44;
+}
+
+/* NOTE */
+.note {
+    text-align: center;
+    margin-top: 45px;
+    padding: 35px 25px;
+    border: 1px solid #d7b56d33;
+    border-radius: 75px;
+    background: linear-gradient(145deg, #ffffff0d, #ffffff03);
+}
+
+.note-label {
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 4px;
+    margin-bottom: 13px;
+}
+
+.note h2 {
+    font-family: "Cinzel", serif;
+    color: var(--light-gold);
+    font-size: clamp(19px, 4vw, 25px);
+    margin-bottom: 15px;
+}
+
+.note p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 2;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #d7b56d33;
+    text-align: center;
+    padding: 30px 15px;
+    color: #89818d;
+    font-size: 10px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+footer span {
+    color: var(--gold);
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE NAV HIDDEN ON DESKTOP */
+.bottom-nav,
+.menu-popup {
+    display: none;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+    .site-header .nav-links {
+        gap: 10px;
+    }
+
+    .site-header .nav-links a {
+        font-size: 8px;
+    }
+}
+
+/* MOBILE LIQUID GLASS - SAME AS GALLERY */
+@media(max-width: 720px) {
+    body {
+        padding-bottom: 108px;
+    }
+
+    .site-header {
+        display: none;
+    }
+
+    .hero {
+        min-height: 48vh;
+        padding: 85px 18px 45px;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 11vw, 65px);
+    }
+
+    .subtitle {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .hero p {
+        font-size: 11px;
+    }
+
+    .container {
+        padding: 20px 5% 55px;
+    }
+
+    .contact-grid {
+        gap: 15px;
+    }
+
+    .card {
+        padding: 30px 18px;
+    }
+
+    .note {
+        padding: 28px 18px;
+    }
+
+    /* LIQUID GLASS BOTTOM NAV */
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        height: 50px;
+        padding: 7px;
+        z-index: 9999;
+        align-items: center;
+        justify-content: space-around;
+        gap: 3px;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.32) 70%,
+            rgba(255,255,255,.16)
+        );
+
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+        border-radius: 90px;
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.35),
+            inset 0 2px 3px rgba(255,255,255,.55),
+            inset 0 -2px 8px rgba(255,255,255,.15),
+            0 0 20px rgba(255,255,255,.08);
+    }
+
+    .bottom-nav::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 12%;
+        width: 76%;
+        height: 1px;
+        border-radius: 90%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+        pointer-events: none;
+    }
+
+    .bottom-nav a,
+    .bottom-nav button {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        height: 58px;
+        padding: 4px 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0;
+        border-radius: 90px;
+        background: transparent;
+        color: #f8f5ef;
+        text-decoration: none;
+        font: 500 9px "Montserrat", sans-serif;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .bottom-nav .nav-icon {
+        font-size: 15px;
+        line-height: 1.2;
+    }
+
+    .bottom-nav a.active,
+    .bottom-nav button.active {
+        color: #f3dfad;
+    }
+
+    .bottom-nav a.active::before,
+    .bottom-nav button.active::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: 90px;
+        border: 1px solid #d7b56d88;
+        background: linear-gradient(
+            145deg,
+            #ffffff35,
+            #d7b56d20,
+            #641d3555
+        );
+        box-shadow:
+            inset 0 1px 8px #ffffff25,
+            0 0 15px #d7b56d22;
+    }
+
+    .bottom-nav a.active::after,
+    .bottom-nav button.active::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 9px;
+        width: 11px;
+        height: 14px;
+        border: 1px solid #fff9;
+        border-radius: 60% 60% 60% 10%;
+        transform: rotate(-38deg);
+        background: radial-gradient(
+            ellipse at 30% 22%,
+            #fff 0 12%,
+            #f3dfad 32%,
+            #d7b56d 65%,
+            #641d35 100%
+        );
+        box-shadow: 0 0 8px #fff9, 0 0 13px #d7b56d99;
+        pointer-events: none;
+    }
+
+    .bottom-nav a.active .nav-icon {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 5px #d7b56d);
+    }
+
+    /* POPUP MENU */
+    .menu-popup {
+        display: none;
+        position: fixed;
+        right: 15px;
+        bottom: 98px;
+        z-index: 10000;
+        min-width: 175px;
+        padding: 9px;
+
+        border: 1px solid rgba(255,255,255,.55);
+        border-top: 1px solid rgba(255,255,255,.85);
+        border-radius: 17px;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            rgba(255,255,255,.08) 35%,
+            rgba(100,29,53,.65) 70%,
+            rgba(255,255,255,.12)
+        );
+
+        backdrop-filter: blur(35px) saturate(220%);
+        -webkit-backdrop-filter: blur(35px) saturate(220%);
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.4),
+            inset 0 2px 3px rgba(255,255,255,.35);
+    }
+
+    .menu-popup.show {
+        display: block;
+        animation: fadeUp .2s ease;
+    }
+
+    .menu-popup a {
+        display: block;
+        padding: 12px;
+        border-radius: 10px;
+        color: #f3dfad;
+        text-decoration: none;
+        font-size: 12px;
+        transition: .2s;
+    }
+
+    .menu-popup a:hover {
+        background: #ffffff20;
+    }
+}
+
+@media(max-width: 480px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card {
+        padding: 30px 18px;
+    }
+
+    .note {
+        padding: 28px 18px;
+    }
+}
+</style>
+</head>
+<audio id="backsound" src="./onty.mp3.mp3"
+loop preload="auto"></audio>
+
+<script>
+const audio = document.getElementById("backsound");
+
+audio.volume = 0.5;
+
+document.addEventListener("click", function() {
+  audio.play();
+}, { once: true });
+
+document.addEventListener("touchstart", function() {
+  audio.play();
+}, { once: true });
+</script>
+<body>
+
+<!-- DESKTOP NAVBAR -->
+<nav class="site-header">
+    <a href="home.html" class="logo">PG 620</a>
+
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="about.html">Tentang 620</a>
+        <a href="gallery.html">Gallery 620</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="committee.html">Kepanitiaan</a>
+        <a href="video.html">Live Streaming</a>
+        <a href="timing.html">Timing Acara</a>
+        <a href="contact.html" class="active">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-content">
+        <div class="subtitle">STAY CONNECTED WITH US</div>
+
+        <h1>Get In Touch</h1>
+
+        <div class="line"></div>
+
+        <p>
+            Terhubung dengan keluarga besar
+            <br>
+            Panggung Gembira 620.
+        </p>
+    </div>
+</header>
+
+<!-- CONTACT SECTION -->
+<main class="container">
+
+    <div class="contact-grid">
+
+        <div class="card">
+            <div class="symbol">◎</div>
+            <h3>Instagram</h3>
+            <p>
+                Ikuti perjalanan dan informasi terbaru
+                Panggung Gembira 620.
+            </p>
+            <a class="btn"
+               href="https://instagram.com/"
+               target="_blank"
+               rel="noopener noreferrer">
+                VISIT INSTAGRAM
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="symbol">✉</div>
+            <h3>Email</h3>
+            <p>
+                Untuk pertanyaan dan keperluan
+                resmi acara.
+            </p>
+            <a class="btn"
+               href="mailto:emailpanitia@example.com">
+                SEND EMAIL
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="symbol">⌖</div>
+            <h3>Location</h3>
+            <p>
+                Pondok Pesantren Modern Mafazah.
+                Temukan lokasi kegiatan kami.
+            </p>
+            <a class="btn"
+               href="https://maps.google.com/?q=Pondok+Pesantren+Modern+Mafazah"
+               target="_blank"
+               rel="noopener noreferrer">
+                OPEN MAPS
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="symbol">☎</div>
+            <h3>WhatsApp</h3>
+            <p>
+                Hubungi panitia untuk informasi
+                dan keperluan lebih lanjut.
+            </p>
+            <a class="btn"
+               href="https://wa.me/6285718118846"
+               target="_blank"
+               rel="noopener noreferrer">
+                CONTACT COMMITTEE
+            </a>
+        </div>
+
+    </div>
+
+    <!-- CLOSING NOTE -->
+    <div class="note">
+        <div class="note-label">OUR SPIRIT</div>
+
+        <h2>One Stage, One Story</h2>
+
+        <p>
+            Panggung Gembira 620 bukan sekadar pertunjukan.
+            Ini adalah cerita, perjuangan, kreativitas,
+            dan kenangan yang dibangun bersama.
+            Satu panggung, satu cerita, sejuta kenangan.
+        </p>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2027 <span>PANGGUNG GEMBIRA 620</span></p>
+    <p>PONDOK PESANTREN MODERN MAFAZAH</p>
+    <p>AL-MUBTARIZ GENERATION</p>
+</footer>
+
+<!-- BOTTOM NAVIGATION MOBILE -->
+<nav class="bottom-nav" aria-label="Navigasi bawah">
+    <a href="home.html" data-page="home.html">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a href="committee.html" data-page="committee.html">
+        <span class="nav-icon">♧</span>
+        <span>Panitia</span>
+    </a>
+
+    <a href="gallery.html" data-page="gallery.html">
+        <span class="nav-icon">▧</span>
+        <span>Galeri</span>
+    </a>
+
+    <a href="video.html" data-page="video.html">
+        <span class="nav-icon">▷</span>
+        <span>Video</span>
+    </a>
+
+    <button type="button" id="bottomMenuToggle"
+        aria-expanded="false" aria-controls="bottomMenu">
+        <span class="nav-icon">☰</span>
+        <span>Menu</span>
+    </button>
+</nav>
+
+<div class="menu-popup" id="bottomMenu">
+    <a href="about.html">📖 Tentang</a>
+    <a href="timing.html">📅 Jadwal acara</a>
+    <a href="countdown.html">⏳ Countdown</a>
+    <a href="contact.html">✉ Kontak</a>
+    <a href="dashboard.html">⚙️ Admin</a>
+</div>
+
+<script>
+/* BOTTOM NAV ACTIVE PAGE */
+(() => {
+    const page = location.pathname.split("/").pop() || "home.html";
+
+    document.querySelectorAll(".bottom-nav a[data-page]").forEach(link => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
+    });
+
+    const toggle = document.getElementById("bottomMenuToggle");
+    const popup = document.getElementById("bottomMenu");
+
+    if (!toggle || !popup) return;
+
+    toggle.addEventListener("click", event => {
+        event.stopPropagation();
+
+        const opened = popup.classList.toggle("show");
+
+        toggle.classList.toggle("active", opened);
+        toggle.setAttribute("aria-expanded", String(opened));
+    });
+
+    document.addEventListener("click", event => {
+        if (!popup.contains(event.target) && !toggle.contains(event.target)) {
+            popup.classList.remove("show");
+            toggle.classList.remove("active");
+            toggle.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
